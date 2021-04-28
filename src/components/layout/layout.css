@@ -1,20 +1,30 @@
 .layout{
-    height: 100%;
+    height: 100vw;
     position: absolute;
     width: 100%;
+    background-color: var(--light-bg);
+    display: flex;
+    flex-direction: column;
+}
+
+ .welcome-area{
+    z-index: 3;
 }
 
 .layout > main{
-    width: 70%;
-    height: 100vw;
+    width: 100%;
+    height: 50vw;
     right: 0;
     position: absolute;
+    background-color: var(--semi-dark-bg);
+    z-index: 0;
 }
 
-.layout > aside{
+.layout > header{
     position: fixed;
-    width: 30%;
-    height: 100%;
+    width: 100%;
     top: 0;
-    left: 0;
+    z-index: 1;
+    height: 4vw;
+    background-color: var(--bg-dark);
 }

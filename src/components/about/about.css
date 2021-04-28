@@ -1,0 +1,58 @@
+.about{
+    height: 20vw;
+    background-color: var(--bg-dark);
+    width: 50vw;
+    position: absolute;
+    top: 60vw;
+    right: 50%;
+    transform: translateX(50%);
+    color: var(--off-white);
+}
+
+.about > h1{
+    text-transform: uppercase;
+}
+
+.about > .buttons-area{
+    display: flex;
+    position: absolute;
+    right: 50%;
+    top: 9vw;
+    transform: translateX(50%);
+}
+
+.buttons-area > button:hover{
+    cursor: pointer;
+}
+
+.work-btn{
+    border: 2px solid var(--orange);
+    color: var(--orange);
+}
+
+.study-btn{
+    border: 2px solid var(--blue);
+    color: var(--blue);
+}
+
+.about-btn{
+    border: 2px solid var(--pink);
+    color: var(--pink);
+}
+
+.buttons-area > button {
+    width: 13vw;
+    margin: 0 1vw;
+    height: 4vw;
+    font-family: "Futura";
+    font-size: 1.2vw;
+    text-transform: uppercase !important;
+    background-color: var(--bg-dark);
+    transition: all .7s ease-in-out;
+  }
+  
+  .buttons-area > button:hover {
+    cursor: pointer;
+    background-color: var(--semi-dark-bg);
+    border-radius: 15vw;
+  }
