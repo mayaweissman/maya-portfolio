@@ -1,0 +1,20 @@
+.layout{
+    height: 100%;
+    position: absolute;
+    width: 100%;
+}
+
+.layout > main{
+    width: 70%;
+    height: 100vw;
+    right: 0;
+    position: absolute;
+}
+
+.layout > aside{
+    position: fixed;
+    width: 30%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
