@@ -16,6 +16,10 @@ export function reducer(oldAppState: AppState, action: Action): AppState {
       }
       break;
 
+    case ActionType.getContentForAboutPopUp:
+      newAppState.contentForAboutPopUp = action.payLoad;
+      break;
+
     default:
       break;
   }

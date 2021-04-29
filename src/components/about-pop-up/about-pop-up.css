@@ -1,0 +1,70 @@
+.about-pop-up{
+    position: fixed;
+    height: 100vw;
+    width: 100vw;
+    top: 0;
+    z-index: 999;
+    background-color: #00000094;
+    animation: FadeInPopUp .6s;
+}
+
+.inside-about-pop-up{
+    height: 40vw;
+    width: 50vw;
+    background-color: var(--light-bg);
+    position: absolute;
+    top: 5vw;
+    right: 50%;
+    color: var(--off-white);
+    animation: Bounce 1s both;
+    animation-delay: 0.3s;
+    transform-origin: right;
+
+}
+
+.inside-about-pop-up > h1{
+    text-transform: uppercase;
+    font-size: 2vw;
+}
+
+.close-pop-up{
+    position: absolute;
+    right: 2vw;
+    top: 1.5vw;
+}
+
+.close-pop-up:hover{
+    cursor: pointer;
+}
+
+@keyframes FadeInPopUp {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+@keyframes Bounce {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale(.3) translateX(50%);
+        transform: scale(.3) translateX(50%);
+      }
+    
+      50% {
+        opacity: 1;
+        -webkit-transform: scale(1.05) translateX(50%);
+        transform: scale(1.05) translateX(50%);
+      }
+    
+      70% {
+        -webkit-transform: scale(.9) translateX(50%);
+        transform: scale(.9) translateX(50%);
+      }
+    
+      100% {
+        -webkit-transform: scale(1) translateX(50%);
+        transform: scale(1) translateX(50%);
+      }
+}
