@@ -32,8 +32,10 @@ html,
   --light-bg: rgb(51, 51, 51);
   --yellow: rgb(195, 192, 139);
   --off-white: rgb(162, 151, 133);
-  --orange: rgb(200, 137, 119);
+  --red: rgb(200, 137, 119);
   --blue: rgb(151, 214, 232);
   --pink: rgb(199, 122, 164);
   --green: rgb(95, 120, 78);
+  --orange: rgb(215, 186, 110);
+  --light-green: rgb(147, 206, 168);
 }

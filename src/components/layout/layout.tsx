@@ -5,6 +5,8 @@ import { AboutPopUp } from "../about-pop-up/about-pop-up";
 import { About } from "../about/about";
 import { Menu } from "../menu/menu";
 import { Projects } from "../projects/projects";
+import { Social } from "../social/social";
+import { Technologies } from "../technologies/technologies";
 import { Welcome } from "../welcome/welcome";
 import "./layout.css";
 
@@ -45,6 +47,8 @@ export class Layout extends Component<any, LayoutState>{
         <main>
           <About />
           <Projects />
+          <Technologies/>
+          <Social/>
         </main>
         {this.state.display && <AboutPopUp />}
 

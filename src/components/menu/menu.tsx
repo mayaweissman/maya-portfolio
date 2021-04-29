@@ -88,8 +88,15 @@ export class Menu extends Component<any, MenuState>{
                 <div onMouseEnter={this.fillUnderLine}
                     onMouseLeave={() => this.setState({ underlinesList: [] })}
                     className={"menu-item item-3 " + this.isActive(3) + this.isUnderLine(3)}>
-                    <a onClick={this.changeDisplay(3)}>
+                    <a href="#socical" onClick={this.changeDisplay(3)}>
                         Find me
+                        </a>
+                </div>
+                <div onMouseEnter={this.fillUnderLine}
+                    onMouseLeave={() => this.setState({ underlinesList: [] })}
+                    className={"menu-item item-4 " + this.isActive(4) + this.isUnderLine(4)}>
+                    <a href="#technologies" onClick={this.changeDisplay(4)}>
+                        Tech stack
                         </a>
                 </div>
             </div>

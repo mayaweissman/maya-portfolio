@@ -1,0 +1,250 @@
+.technologies {
+  position: absolute;
+  top: 121vw;
+  width: 100%;
+  height: 40vw;
+  background-color: var(--light-bg);
+  z-index: 1;
+}
+
+.technologies-area {
+  height: 35vw;
+  width: 50vw;
+  position: absolute;
+  right: 50%;
+  top: 50%;
+  transform: translateX(50%) translateY(-50%);
+  background-color: var(--bg-dark);
+}
+
+.technologies-area > h1 {
+    text-transform: uppercase;
+    color: var(--off-white);
+    z-index: 2;
+    position: absolute;
+    right: 50%;
+    transform: translateX(50%);
+}
+
+.stack {
+  content: "";
+  height: 24vw;
+  width: 15vw;
+  border: 2px solid white;
+  border-top: 0;
+  margin-left: 3vw;
+  position: relative;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.stack-title {
+  color: var(--off-white);
+  text-transform: uppercase;
+  position: absolute;
+  top: 25vw;
+  right: 50%;
+  transform: translateX(50%);
+}
+
+.stacks {
+  position: absolute;
+  right: 50%;
+  top: 8vw;
+  transform: translateX(50%);
+  display: flex;
+}
+
+.tech {
+  background-color: var(--semi-dark-bg);
+  height: 2.3vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-size: 1.2vw;
+  width: 100%;
+  z-index: 1;
+  opacity: 0;
+}
+
+.tech-js {
+  color: var(--blue);
+  border: 1px solid var(--blue);
+  animation: FallingDown 4.5s both;
+  animation-delay: 0;
+}
+.tech-html {
+  color: var(--pink);
+  border: 1px solid var(--pink);
+  animation: FallingDown 4.5s both;
+  animation-delay: 2s;
+}
+
+.tech-css {
+  color: var(--light-green);
+  border: 1px solid var(--light-green);
+  animation: FallingDown 4.5s both;
+  animation-delay: 4s;
+}
+
+.tech-ts {
+  color: var(--yellow);
+  border: 1px solid var(--yellow);
+  animation: FallingDown 4.5s both;
+  animation-delay: 6s;
+}
+
+.tech-jquery {
+  color: var(--pink);
+  border: 1px solid var(--pink);
+  animation: FallingDown 4.5s both;
+  animation-delay: 8s;
+}
+
+.tech-react {
+  color: var(--orange);
+  border: 1px solid var(--orange);
+  animation: FallingDown 4.5s both;
+  animation-delay: 10s;
+}
+
+.tech-redux {
+  color: var(--blue);
+  border: 1px solid var(--blue);
+  animation: FallingDown 4.5s both;
+  animation-delay: 12s;
+}
+
+.tech-wordpress {
+  color: var(--red);
+  border: 1px solid var(--red);
+  animation: FallingDown 4.5s both;
+  animation-delay: 14s;
+}
+
+.tech-angular {
+  color: var(--light-green);
+  border: 1px solid var(--light-green);
+  animation: FallingDown 4.5s both;
+  animation-delay: 16s;
+}
+
+.tech-bootstrap {
+  color: var(--orange);
+  border: 1px solid var(--orange);
+  animation: FallingDown 4.5s both;
+  animation-delay: 18s;
+}
+
+
+.tech-node {
+  color: var(--red);
+  border: 1px solid var(--red);
+  animation: FallingDown 4.5s both;
+  animation-delay: 1s;
+}
+.tech-sql {
+  color: var(--light-green);
+  border: 1px solid var(--light-green);
+  animation: FallingDown 4.5s both;
+  animation-delay: 3s;
+}
+
+.tech-mysql {
+  color: var(--orange);
+  border: 1px solid var(--orange);
+  animation: FallingDown 4.5s both;
+  animation-delay: 5s;
+}
+
+.tech-mongo {
+  color: var(--off-white);
+  border: 1px solid var(--off-white);
+  animation: FallingDown 4.5s both;
+  animation-delay: 7s;
+}
+
+.tech-php {
+  color: var(--blue);
+  border: 1px solid var(--blue);
+  animation: FallingDown 4.5s both;
+  animation-delay: 9s;
+}
+
+.tech-socket {
+  color: var(--pink);
+  border: 1px solid var(--pink);
+  animation: FallingDown 4.5s both;
+  animation-delay: 11s;
+}
+
+.tech-express {
+  color: var(--yellow);
+  border: 1px solid var(--yellow);
+  animation: FallingDown 4.5s both;
+  animation-delay: 13s;
+}
+
+.tech-azure {
+  color: var(--blue);
+  border: 1px solid var(--blue);
+  animation: FallingDown 4.5s both;
+  animation-delay: 15s;
+}
+
+.tech-heroku {
+  color: var(--red);
+  border: 1px solid var(--red);
+  animation: FallingDown 4.5s both;
+  animation-delay: 17s;
+}
+
+.tech-firebase {
+  color: var(--pink);
+  border: 1px solid var(--pink);
+  animation: FallingDown 4.5s both;
+  animation-delay: 19s;
+}
+
+
+
+@keyframes FallingDown{
+	0%{
+		opacity: 0;
+		transform: translateY(-20vw);
+	}
+	100%{
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.tech-icon{
+  width: 1.5vw;
+  margin-right: 1vw;
+  opacity: 0;
+}
+
+.tech > span {
+  transform: translateX(-1.5vw);
+  transition: all .8s ease-in-out;
+}
+
+.tech:hover > span {
+  transform: translateX(0);
+}
+
+.tech:hover > img{
+animation: FadeInTechIcon 1s both;
+transition: all .5s ease-in-out;
+}
+
+@keyframes FadeInTechIcon{
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
