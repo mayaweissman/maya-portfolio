@@ -1,12 +1,20 @@
-.about {
+.about{
+  width: 100%;
+  background-color: var(--light-bg);;
+  height: 41vw;
+  position: absolute;
+  top: 50vw;
+}
+
+.about-box {
   height: 20vw;
   background-color: var(--bg-dark);
   width: 50vw;
   position: absolute;
-  top: 60vw;
+  top: 50%;
   right: 50%;
   box-shadow: 0 0 66px -3px var(--off-white);
-  transform: translateX(50%);
+  transform: translateX(50%) translateY(-50%);
   color: var(--off-white);
 }
 
@@ -14,7 +22,7 @@
   text-transform: uppercase;
 }
 
-.about > .buttons-area {
+.about-box > .buttons-area {
   display: flex;
   position: absolute;
   right: 50%;

@@ -3,6 +3,8 @@ import { Unsubscribe } from "redux";
 import { store } from "../../redux/store";
 import { AboutPopUp } from "../about-pop-up/about-pop-up";
 import { About } from "../about/about";
+import { Menu } from "../menu/menu";
+import { Projects } from "../projects/projects";
 import { Welcome } from "../welcome/welcome";
 import "./layout.css";
 
@@ -10,7 +12,7 @@ interface LayoutState {
   display: boolean
 }
 
-export class Layout extends Component <any, LayoutState>{
+export class Layout extends Component<any, LayoutState>{
 
   private unsubscribeStore: Unsubscribe;
 
@@ -35,13 +37,14 @@ export class Layout extends Component <any, LayoutState>{
     return (
       <div className="layout">
         <header>
-          <h1>Menu</h1>
+          <Menu/>
         </header>
         <div className="welcome-area">
           <Welcome />
         </div>
         <main>
           <About />
+          <Projects />
         </main>
         {this.state.display && <AboutPopUp />}
 
