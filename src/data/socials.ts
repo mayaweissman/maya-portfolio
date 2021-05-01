@@ -42,10 +42,10 @@ export function getSocial() {
       },
       {
         id: 1,
-        name: "signal",
-        url: "https://signal.org/",
-        imgSrc:"signal.png",
-        title: "050-4751-786",
+        name: "gmail",
+        url: "mailto:mayaw10@gmail.com",
+        imgSrc:"gmail.png",
+        title: "mayaw10@gmail.com",
         isOnDrag: false
       },
       {
@@ -63,7 +63,7 @@ export function getSocial() {
         imgSrc:"club-house.png",
         title: "@mayaweissman",
         isOnDrag: false
-      },
+      }
     
     ];
     return socials;

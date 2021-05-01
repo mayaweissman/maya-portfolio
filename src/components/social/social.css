@@ -3,7 +3,7 @@
   background-color: var(--semi-dark-bg);
   width: 100%;
   height: 35vw;
-  top: 161vw;
+  top: 191vw;
 }
 
 .social > h1 {
@@ -16,8 +16,8 @@
   width: 24vw;
   position: absolute;
   right: 50%;
-  top: 5vw;
-  right: 38vw;
+  top: 7vw;
+  right: 39vw;
   /* animation: Rotate 10s both; */
 }
 
@@ -56,15 +56,19 @@
   animation: RotateUpsideDown 7s both;
 }
 
+.social-circle:hover{
+  cursor: pointer;
+}
+
 .social-center{
   content: "";
   background-color: transparent;
   height: 4vw;
   width: 4vw;
-  top: 14.8vw;
+  top: 16.8vw;
   border-radius: 50%;
   position: absolute;
-  right: 46.1vw;
+  right: 47.1vw;
   z-index: 2;
   animation: Scale 1s both;
 }
@@ -126,7 +130,7 @@
   top: 14vw;
 }
 
-.signal{
+.gmail{
   top: 14vw;
   right: 20vw;
 }
@@ -138,8 +142,8 @@
     position: absolute;
     background-color: white;
     border-radius: 50%;
-    top: 15vw;
-    right: 46vw;
+    top: 17vw;
+    right: 47vw;
     animation: FadeInMainSocial 3s both;
     transition: all 3s ease-in-out;
     animation-delay: 7s;
@@ -239,6 +243,8 @@
     transition: all 1s ease-in-out;
 }
 
+.social-center:hover > .social-title,
 .social-border:hover > .social-title{
     opacity: 1;
 }
+

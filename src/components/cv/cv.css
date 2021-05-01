@@ -1,0 +1,64 @@
+.cv{
+    height: 30vw;
+    width: 100%;
+    background-color: var(--light-bg);
+    position: absolute;
+    top: 161vw;
+}
+
+.cv-inside{
+    position: absolute;
+    height: 15vw;
+    width: 50vw;
+    background-color: var(--bg-dark);
+    top: 50%;
+    right: 50%;
+    transform: translateX(50%) translateY(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.cv > .cv-inside > h1{
+    text-transform: uppercase;
+    color: var(--off-white);
+}
+
+.download{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    width: 7vw;
+    height: 100%;
+}
+
+.download > a{
+    background-color: var(--pink);
+    border-radius: 50%;
+    height: 6vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 6vw;
+    margin-bottom: 1vw;
+    transition: all .8s ease-in-out;
+}
+
+.download > span{
+    opacity: 0;
+    transition: all .8s ease-in-out;
+    white-space: nowrap;
+}
+
+.download > a:hover{
+    background-color: rgb(219, 44, 139);
+    cursor: pointer;
+}
+
+
+.download:hover > span{
+    opacity: 1;
+}

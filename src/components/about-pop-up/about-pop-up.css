@@ -19,6 +19,9 @@
     animation: Bounce 1s both;
     animation-delay: 0.3s;
     transform-origin: right;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
 }
 
@@ -67,4 +70,14 @@
         -webkit-transform: scale(1) translateX(50%);
         transform: scale(1) translateX(50%);
       }
+}
+
+.about-image{
+    width: 10vw;
+}
+
+.content-area{
+    text-align: left;
+    padding: 1vw;
+    font-size: 1.1vw;
 }

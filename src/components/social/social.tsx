@@ -23,7 +23,7 @@ export class Social extends Component<any, SocialState> {
         { name: "linkedin", left: -4, top: -4 },
         { name: "github", left: -4, top: -4 },
         { name: "whatsapp", left: -4, top: -4 },
-        { name: "signal", left: -4, top: -4 },
+        { name: "gmail", left: -4, top: -4 },
         { name: "clubhouse", left: -4, top: -4 },
         { name: "telegram", left: -4, top: -4 },
       ],
@@ -114,6 +114,16 @@ export class Social extends Component<any, SocialState> {
     if (this.state.isOnDrag) {
       this.setState({ isCenterAvailable: true });
     }
+    setTimeout(() => {
+      this.setState({ isCenterAvailable: false });
+    }, 2000);
+  };
+
+  public openByURl = () => {
+    if (!this.state.isOnDrag) {
+      const url = this.state.elementNameToCenter.url;
+      window.open(url, "_blank");
+    }
   };
 
   public render() {
@@ -127,7 +137,7 @@ export class Social extends Component<any, SocialState> {
 
         <div className="circle">
           {this.state.socialElements.map((s) => (
-            <div className={"social-border " + s.name}>
+            <div className={"social-border " + s.name} key={s.name}>
               {s.name !== this.state.elementNameToCenter.name && (
                 <>
                   <div
@@ -160,7 +170,7 @@ export class Social extends Component<any, SocialState> {
             }
             onClick={this.openSocial}
           >
-            <div className="social-circle">
+            <div className="social-circle" onClick={this.openByURl}>
               <img
                 src={`./assets/images/${this.state.elementNameToCenter.imgSrc}`}
               />

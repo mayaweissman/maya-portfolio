@@ -5,6 +5,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 0 0 32px -3px black;
 }
 
 .menu-item {

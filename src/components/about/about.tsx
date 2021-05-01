@@ -20,9 +20,9 @@ export class About extends Component {
           <h1>About</h1>
 
           <div className="buttons-area">
-            <button className="work-btn" onClick={this.openAboutPopUp('career')}>
+            <button className="work-btn" onClick={this.openAboutPopUp('work')}>
               <img className="about-icon" src="./assets/images/career-icon.svg" />
-              <span>Career summary</span>
+              <span>Career</span>
             </button>
             <button className="study-btn" onClick={this.openAboutPopUp('study')}>
               <img className="about-icon" src="./assets/images/education-icon.svg" />
