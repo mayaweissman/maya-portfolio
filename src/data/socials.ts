@@ -27,7 +27,7 @@ export function getSocial() {
       {
         id: 4,
         name: "whatsapp",
-        url: "",
+        url: "https://api.whatsapp.com/send?phone=9720504751786",
         imgSrc:"whatsapp.png",
         title: "050-475-1786",
         isOnDrag: false
@@ -35,7 +35,7 @@ export function getSocial() {
       {
         id: 1,
         name: "linkedin",
-        url: "https://www.linkedin.com/feed/",
+        url: "https://www.linkedin.com/in/maya-weissman-3810391b1/",
         imgSrc:"linkedin.png",
         title: "/mayaweissman",
         isOnDrag: false
@@ -43,7 +43,7 @@ export function getSocial() {
       {
         id: 1,
         name: "signal",
-        url: "",
+        url: "https://signal.org/",
         imgSrc:"signal.png",
         title: "050-4751-786",
         isOnDrag: false
@@ -51,7 +51,7 @@ export function getSocial() {
       {
         id: 1,
         name: "telegram",
-        url: "",
+        url: "https://t.me/mayaweissman",
         imgSrc:"telegram.png",
         title: "@mayaweissman",
         isOnDrag: false
@@ -59,7 +59,7 @@ export function getSocial() {
       {
         id: 1,
         name: "clubhouse",
-        url: "",
+        url: "https://www.joinclubhouse.com/@mayaweissman",
         imgSrc:"club-house.png",
         title: "@mayaweissman",
         isOnDrag: false

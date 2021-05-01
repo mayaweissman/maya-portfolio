@@ -183,6 +183,10 @@
   }
 }
 
+.shaddow.active{
+  display: block;
+}
+
 .drag-icon {
   width: 2.5vw;
   position: absolute;

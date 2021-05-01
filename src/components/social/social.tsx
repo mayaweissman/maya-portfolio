@@ -9,6 +9,7 @@ interface SocialState {
   elementNameToCenter: SocialModel;
   socialElements: SocialModel[];
   isAfterAnimation: boolean;
+  isCenterAvailable: boolean;
 }
 
 export class Social extends Component<any, SocialState> {
@@ -29,6 +30,7 @@ export class Social extends Component<any, SocialState> {
       elementNameToCenter: new SocialModel(),
       socialElements: getSocial(),
       isAfterAnimation: false,
+      isCenterAvailable: false,
     };
   }
 
@@ -39,12 +41,16 @@ export class Social extends Component<any, SocialState> {
   }
 
   public dragSocial = (social: string) => (e: any) => {
+    //Enable function only if animation end
     if (this.state.isAfterAnimation) {
       this.setState({ isOnDrag: true });
+      this.setState({ isCenterAvailable: false });
+      //Restart all drggaing for socials ojects
       const socials = [...this.state.socialElements];
       for (const s of socials) {
         s.isOnDrag = false;
       }
+      //True for dragging only for specipic object
       const socialElementIndex = socials.findIndex((s) => s.name === social);
       socials[socialElementIndex].isOnDrag = true;
       this.setState({ socialElements: socials });
@@ -63,8 +69,8 @@ export class Social extends Component<any, SocialState> {
             .querySelector(`.${social}`)
             ?.getBoundingClientRect().y;
           if (elementX && elementY) {
-            const x = clientX - elementX;
-            const y = clientY - elementY;
+            const x = clientX - elementX - 25;
+            const y = clientY - elementY - 25;
             const positions = [...this.state.positions];
             const index = positions.findIndex((p) => p.name === social);
             positions[index].left = x;
@@ -72,51 +78,41 @@ export class Social extends Component<any, SocialState> {
             this.setState({ positions });
 
             document.addEventListener("click", (e) => {
-              const targetX = document
-                .querySelector(".handle-social")
-                ?.getBoundingClientRect().x;
-              const targetY = document
-                .querySelector(".handle-social")
-                ?.getBoundingClientRect().y;
-              if (targetY && targetX) {
-                if (
-                  (clientX < targetX && clientX > targetX - 200) ||
-                  (clientX > targetX && clientX < targetX + 200)
-                ) {
-                  if (
-                    (clientY < targetY && clientY > targetY - 200) ||
-                    (clientY > targetY && clientY < targetY + 200)
-                  ) {
-                    const elementNameToCenter = this.state.socialElements.find(
-                      (s) => s.name === social
-                    );
-                    if (elementNameToCenter) {
-                      this.setState({ elementNameToCenter });
-                      this.setState({ isOnDrag: false });
-                      const updatedPositions = [...this.state.positions];
-                      for (const p of updatedPositions) {
-                        p.left = -4;
-                        p.top = -4;
-                      }
-                      this.setState({ positions: updatedPositions });
-                      setTimeout(() => {
-                        window.open(this.state.elementNameToCenter.url, "_blank");
-                      }, 1000);
-                    }
-                  }
-                } else {
-                  positions[index].left = -4;
-                  positions[index].top = -4;
-                  this.setState({ positions });
-                  document.removeEventListener("mousemove", () => {}, true);
+              if (this.state.isCenterAvailable) {
+                const elementNameToCenter = this.state.socialElements.find(
+                  (s) => s.name === social
+                );
+                if (elementNameToCenter) {
+                  this.setState({ elementNameToCenter });
                   this.setState({ isOnDrag: false });
-                  return;
+                  const updatedPositions = [...this.state.positions];
+                  for (const p of updatedPositions) {
+                    p.left = -4;
+                    p.top = -4;
+                  }
+                  this.setState({ positions: updatedPositions });
+                  setTimeout(() => {
+                    window.open(this.state.elementNameToCenter.url, "_blank");
+                  }, 1000);
                 }
+              } else {
+                positions[index].left = -4;
+                positions[index].top = -4;
+                this.setState({ positions });
+                document.removeEventListener("mousemove", () => {}, true);
+                this.setState({ isOnDrag: false });
+                return;
               }
             });
           }
         }
       });
+    }
+  };
+
+  public openSocial = () => {
+    if (this.state.isOnDrag) {
+      this.setState({ isCenterAvailable: true });
     }
   };
 
@@ -162,6 +158,7 @@ export class Social extends Component<any, SocialState> {
             className={
               "social-center center-" + this.state.elementNameToCenter.name
             }
+            onClick={this.openSocial}
           >
             <div className="social-circle">
               <img
@@ -174,7 +171,7 @@ export class Social extends Component<any, SocialState> {
           </div>
         )}
 
-        <div className="handle-social">
+        <div className="handle-social" onClick={this.openSocial}>
           <div className="handle-social-inside"></div>
           <div className="handle-social-deep"></div>
           <img className="drag-icon" src="./assets/images/drag.png" />
