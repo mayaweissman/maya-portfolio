@@ -8,13 +8,83 @@
 }
 
 .slide {
-  height: 200px;
-  width: 200px;
-  background-color: #fff;
+  height: 24vw;
+  width: 20vw;
+  background-color: var(--bg-dark);
   border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.slide > img{
+  width: 12vw;
+}
+
+.slide:hover{
+  cursor: pointer;
+}
+
+.react-3d-carousel .slider-container .slider-content .slider-single .slider-single-content {
+  box-shadow:unset !important;
+}
+
+.react-3d-carousel .slider-container .slider-left div,
+.react-3d-carousel .slider-container .slider-right div {
+  border-top: none !important;
+  border-right:  none !important;
+  border-bottom:  none !important;
+  border-left: none !important;
+  background-image: url(https://icon-library.com/images/arrow-icon-white/arrow-icon-white-29.jpg) !important;
+  background-size: cover;
+  width: 1vw;
+  height: 1vw;
+}
+
+.react-3d-carousel .slider-container .slider-left div{
+  transform: rotate(180deg) translateY(-50%) !important;
+}
+
+.title-for-profect-section {
+  text-transform: uppercase;
+  position: absolute;
+  bottom: 1.5vw;
+  width: 16vw;
+  height: 3vw;
+  display: flex;
+  justify-content: center;
+  border: 0;
+  align-items: center;
+  font-size: 1vw;
+  border-bottom: 2px solid var(--off-white);
+  transition: all 1s ease-in-out;
+  border: 0;
+border-bottom: 2px solid var(--off-white);
+color: var(--off-white);
+background-size: 200% 200%;
+background-image: 
+linear-gradient(to top, var(--off-white) 50%, transparent 50%);
+-webkit-transition: background-position 300ms, color 300ms ease, border-color 300ms ease;
+-moz-transition: background-position 300ms, color 300ms ease, border-color 300ms ease;
+-ms-transition: background-position 300ms, color 300ms ease, border-color 300ms ease;
+-o-transition: background-position 300ms, color 300ms ease, border-color 300ms ease;
+transition: background-position 300ms, color 300ms ease, border-color 300ms ease;
+}
+
+
+.title-for-profect-section:hover{
+color: var(--bg-dark);
+border-color: var(--off-white);
+background-image: 
+linear-gradient(to top, var(--off-white) 51%, transparent 50%);
+background-position: 0 100%;
+-webkit-transition: background-position 300ms, color 300ms ease, border-color 300ms ease;
+-moz-transition: background-position 300ms, color 300ms ease, border-color 300ms ease;
+-ms-transition: background-position 300ms, color 300ms ease, border-color 300ms ease;
+-o-transition: background-position 300ms, color 300ms ease, border-color 300ms ease;
+transition: background-position 300ms, color 300ms ease, border-color 300ms ease;
 }
 
 .projects > h1 {
