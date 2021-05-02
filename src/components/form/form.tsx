@@ -3,6 +3,7 @@ import { FormModel } from "../../models/formModel";
 import "./form.css";
 import LockIcon from "@material-ui/icons/Lock";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
+import axios from "axios";
 
 interface FormState {
   focused: { name: boolean; email: boolean; phone: boolean; message: boolean };
@@ -29,28 +30,6 @@ export class Form extends Component<any, FormState> {
       },
     };
   }
-
-  public upPlaceholders = (name: string) => (e: any) => {
-    const focused = { ...this.state.focused };
-    switch (name) {
-      case "name":
-        focused.name = true;
-        break;
-      case "phone":
-        focused.phone = true;
-        break;
-      case "email":
-        focused.email = true;
-        break;
-      case "message":
-        focused.message = true;
-        break;
-
-      default:
-        break;
-    }
-    this.setState({ focused });
-  };
 
   public setName = (e: ChangeEvent<HTMLInputElement>) => {
     const fname = e.target.value;
@@ -79,7 +58,7 @@ export class Form extends Component<any, FormState> {
     let emailError = "";
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-    if (email.length < 2 || !email) {
+    if (!email) {
       emailError = "How do I know how to contact you?";
     } else if (!re.test(String(email).toLowerCase())) {
       emailError = "Did you just invent an email?";
@@ -132,6 +111,86 @@ export class Form extends Component<any, FormState> {
     this.setState({ credentials });
   };
 
+  public isFormIsLegal = () => {
+    let isLegal = true;
+    if (!this.state.credentials.phone || !this.state.credentials.email || !this.state.credentials.name) {
+      isLegal = false;
+    }
+    return isLegal;
+  }
+
+
+  public upPlaceholders = (name: string) => (e: any) => {
+    const focused = { ...this.state.focused };
+    switch (name) {
+      case "name":
+        focused.name = true;
+        break;
+      case "phone":
+        focused.phone = true;
+        break;
+      case "email":
+        focused.email = true;
+        break;
+      case "message":
+        focused.message = true;
+        break;
+
+      default:
+        break;
+    }
+    this.setState({ focused });
+  };
+
+  public isDownPlaceholder = (name: string) => (e: any) => {
+    const focused = { ...this.state.focused };
+    switch (name) {
+      case "name":
+        if (!this.state.credentials.name && this.state.errors.nameError !== 'I also have a last name... What about you?') {
+          focused.name = false;
+        }
+        break;
+      case "phone":
+        if (!this.state.credentials.phone && this.state.errors.phoneError !== 'Sorry, your phone number does not match my regex.') {
+          focused.phone = false;
+        }
+        break;
+      case "email":
+        if (!this.state.credentials.email && this.state.errors.emailError !== 'Did you just invent an email?') {
+          focused.email = false;
+        }
+        break;
+      case "message":
+        if (!this.state.credentials.message) {
+          focused.message = false;
+        }
+        break;
+
+      default:
+        break;
+    }
+    this.setState({ focused });
+  };
+
+  public sendForm = async () => {
+    try {
+      const headers = {
+        processData: false,
+        contentType: false,
+        cache: false,
+        enctype: 'multipart/form-data',
+        "Access-Control-Allow-Origin": "*"
+      }
+      const response = await axios.post('https://hooks.zapier.com/hooks/catch/3149413/by3wogy/', this.state.credentials, {
+        headers: headers
+      });
+      console.log(response.data);
+    }
+    catch (err) {
+      console.log(err.message);
+    }
+  }
+
   public render() {
     return (
       <div className="form" id="form">
@@ -141,6 +200,8 @@ export class Form extends Component<any, FormState> {
             Here you can tell me about some really awesome jobs, a problems you
             found on any of my assets, <br />
             or anything you like :){" "}
+            <br />
+            <span className="explaination">Fields marked with-* are required</span>
           </h3>
 
           <form>
@@ -158,6 +219,7 @@ export class Form extends Component<any, FormState> {
                 <input
                   onFocus={this.upPlaceholders("name")}
                   onInput={this.setName}
+                  onBlur={this.isDownPlaceholder('name')}
                   className="fname-field"
                   name="fname"
                   type="text"
@@ -177,6 +239,7 @@ export class Form extends Component<any, FormState> {
                 <input
                   onFocus={this.upPlaceholders("phone")}
                   onInput={this.setPhone}
+                  onBlur={this.isDownPlaceholder('phone')}
                   className="phone-field"
                   name="phone"
                   type="number"
@@ -197,6 +260,7 @@ export class Form extends Component<any, FormState> {
                 </span>
                 <input
                   onFocus={this.upPlaceholders("email")}
+                  onBlur={this.isDownPlaceholder('email')}
                   className="email-field"
                   onInput={this.setEmail}
                   name="email"
@@ -217,6 +281,7 @@ export class Form extends Component<any, FormState> {
                 <textarea
                   onInput={this.setMessage}
                   onFocus={this.upPlaceholders("message")}
+                  onBlur={this.isDownPlaceholder('message')}
                   rows={4}
                   name="message"
                   className="message-field"
@@ -226,14 +291,14 @@ export class Form extends Component<any, FormState> {
             </div>
           </form>
 
-          <div className="send-circle">
-            <div className="middle-of-send-circle">
+          <div className={this.isFormIsLegal() ? "send-circle ilegal-form" : "send-circle"}>
+            <div className="middle-of-send-circle" onClick={() => { if (this.isFormIsLegal()) { this.sendForm() } }}>
               <span
                 className={
-                  this.getProgressForCircle() >= 3 ? "lock unlocked" : "lock"
+                  this.isFormIsLegal() ? "lock unlocked" : "lock"
                 }
               ></span>
-              {this.getProgressForCircle() >= 3 && <span className="send-btn">Send</span>   }
+              {this.isFormIsLegal() && <span>Send</span>}
             </div>
             <div className="first-section">
               <div

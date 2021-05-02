@@ -61,7 +61,42 @@ export class Menu extends Component<any, MenuState> {
 
   public changeDisplay = (index: number) => (event: any) => {
     this.setState({ activeLink: index, underlinesList: [] });
+    let y = 0;
+    switch (index) {
+      case 1:
+        y = this.getVerticalScrollPercentage(document.body, 18);
+        break;
+
+      case 2:
+        y = this.getVerticalScrollPercentage(document.body, 30);
+        break;
+
+      case 3:
+        y = this.getVerticalScrollPercentage(document.body, 40);
+        break;
+
+      case 4:
+        y = this.getVerticalScrollPercentage(document.body, 55);
+        break;
+
+      case 5:
+        y = this.getVerticalScrollPercentage(document.body, 67);
+        break;
+
+      case 6:
+        y = this.getVerticalScrollPercentage(document.body, 85);
+        break;
+
+      default:
+        break;
+    }
+    window.scrollTo(0, y);
   };
+
+  public getVerticalScrollPercentage(elm: any, percentage: number) {
+    var p = elm.parentNode
+    return p.scrollHeight / 100 * percentage;
+  }
 
   public render() {
     return (
@@ -73,7 +108,7 @@ export class Menu extends Component<any, MenuState> {
             "menu-item item-1 " + this.isActive(1) + this.isUnderLine(1)
           }
         >
-          <a href="#about" onClick={this.changeDisplay(1)}>
+          <a onClick={this.changeDisplay(1)}>
             About
           </a>
         </div>
@@ -84,7 +119,7 @@ export class Menu extends Component<any, MenuState> {
             "menu-item item-2 " + this.isActive(2) + this.isUnderLine(2)
           }
         >
-          <a href="#technologies" onClick={this.changeDisplay(2)}>
+          <a onClick={this.changeDisplay(2)}>
             Tech stack
           </a>
         </div>
@@ -95,7 +130,7 @@ export class Menu extends Component<any, MenuState> {
             "menu-item item-3 " + this.isActive(3) + this.isUnderLine(3)
           }
         >
-          <a href="#projects" onClick={this.changeDisplay(3)}>
+          <a onClick={this.changeDisplay(3)}>
             Projects
           </a>
         </div>
@@ -106,7 +141,7 @@ export class Menu extends Component<any, MenuState> {
             "menu-item item-4 " + this.isActive(4) + this.isUnderLine(4)
           }
         >
-          <a href="#cv" onClick={this.changeDisplay(4)}>
+          <a onClick={this.changeDisplay(4)}>
             My CV
           </a>
         </div>
@@ -117,7 +152,7 @@ export class Menu extends Component<any, MenuState> {
             "menu-item item-5 " + this.isActive(5) + this.isUnderLine(5)
           }
         >
-          <a href="#social" onClick={this.changeDisplay(5)}>
+          <a onClick={this.changeDisplay(5)}>
             Find me
           </a>
         </div>
@@ -128,7 +163,7 @@ export class Menu extends Component<any, MenuState> {
             "menu-item item-6 " + this.isActive(6) + this.isUnderLine(6)
           }
         >
-          <a href="#form" onClick={this.changeDisplay(6)}>
+          <a onClick={this.changeDisplay(6)}>
             Contact me
           </a>
         </div>

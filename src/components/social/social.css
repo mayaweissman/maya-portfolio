@@ -18,7 +18,7 @@
   right: 50%;
   top: 7vw;
   right: 39vw;
-  animation: Rotate 10s both;
+  /* animation: Rotate 10s both; */
 }
 
 @keyframes Rotate {

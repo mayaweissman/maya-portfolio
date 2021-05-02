@@ -13,7 +13,8 @@ import { Welcome } from "../welcome/welcome";
 import "./layout.css";
 
 interface LayoutState {
-  display: boolean
+  display: boolean,
+  scroll: number
 }
 
 export class Layout extends Component<any, LayoutState>{
@@ -23,7 +24,8 @@ export class Layout extends Component<any, LayoutState>{
   public constructor(props: any) {
     super(props);
     this.state = {
-      display: store.getState().isAboutPopUpShow
+      display: store.getState().isAboutPopUpShow,
+      scroll: 0
     }
 
     this.unsubscribeStore = store.subscribe(() => {
@@ -32,7 +34,7 @@ export class Layout extends Component<any, LayoutState>{
     })
   }
 
-  public componentDidMount(){
+  public componentDidMount() {
     this.unsubscribeStore = store.subscribe(() => {
       const display = store.getState().isAboutPopUpShow;
       this.setState({ display });
@@ -41,6 +43,15 @@ export class Layout extends Component<any, LayoutState>{
     console.log('%c Hi there!', 'font-weight: bold; font-size: 50px;color: rgb(214, 79, 153); text-shadow: 3px 3px 0 rgb(151, 214, 232) , 6px 6px 0 rgb(199, 122, 164) , 9px 9px 0 rgb(215, 186, 110) , 12px 12px 0 rgb(147, 206, 168)');
     console.log('%c If you are here, I can only guess you looking for some errors...\n My first senior, Who was really smart once told me that the more you know \n the more you realize you actullay know nothing. \n So, if u do found errors, I wish you will tell me about them :) \n mayaw10@gmail.com', 'color: rgb(51, 51, 51); font-family:sans-serif; font-size: 14px; ');
 
+    window.addEventListener('scroll', () => {
+      const scroll = +this.getVerticalScrollPercentage(document.body);
+      this.setState({ scroll })
+    })
+  }
+
+  public getVerticalScrollPercentage(elm: any) {
+    var p = elm.parentNode
+    return (elm.scrollTop || p.scrollTop) / (p.scrollHeight - p.clientHeight) * 100
   }
 
   public componentWillUnmount(): void {
@@ -51,18 +62,18 @@ export class Layout extends Component<any, LayoutState>{
     return (
       <div className="layout">
         <header>
-          <Menu/>
+          <Menu />
         </header>
         <div className="welcome-area">
           <Welcome />
         </div>
         <main>
-          <About />
-          <Technologies/>
-          <Projects />
-          <Cv/>
-          <Social/>
-          <Form/>
+          {this.state.scroll >= 15 && <About />}
+          {this.state.scroll >= 25 && <Technologies />}
+          {this.state.scroll >= 35 && <Projects />}
+          {this.state.scroll >= 55 && <Cv />}
+          {this.state.scroll >= 65 && <Social />}
+          {this.state.scroll >= 80 && <Form />}
         </main>
         {this.state.display && <AboutPopUp />}
 
