@@ -7,8 +7,9 @@ export class ProjectModel {
       public url?: string,
       public gitLink?: string, 
       public content?: string,
-      public frameworks?: string[]
-    ) {}
+      public frameworks?: string[] 
+    ) {
+    }
   }
   
   

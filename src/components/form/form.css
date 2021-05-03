@@ -511,3 +511,19 @@ input:-webkit-autofill:active {
   font-size: 3.1vw;
   transition: all 0.5s ease-in-out;
 }
+
+.thanks-gif{
+  position: relative;
+  margin: 2vw;
+  width: 22vw;
+}
+
+.middle-of-send-circle > span:nth-of-type(2){
+  position: relative;
+  top: 5vw;
+  font: 1vw;
+}
+
+.middle-of-send-circle > span:hover{
+  cursor: pointer;
+}

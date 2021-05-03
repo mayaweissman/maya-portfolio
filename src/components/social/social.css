@@ -424,3 +424,17 @@
     opacity: 0;
   }
 }
+
+
+.mobile .social-center {
+  content: "";
+  background-color: transparent;
+  height: 4vw;
+  width: 4vw;
+  top: 59.8vw;
+  border-radius: 50%;
+  position: absolute;
+  right: 55.1vw;
+  z-index: 2;
+  animation: Scale 1s both;
+}

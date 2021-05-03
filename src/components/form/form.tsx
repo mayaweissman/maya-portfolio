@@ -14,6 +14,7 @@ interface FormState {
     phoneError: string;
     messageError: string;
   };
+  isFormSent: boolean;
 }
 
 export class Form extends Component<any, FormState> {
@@ -28,6 +29,7 @@ export class Form extends Component<any, FormState> {
         phoneError: " ",
         messageError: " ",
       },
+      isFormSent: false,
     };
   }
 
@@ -113,12 +115,15 @@ export class Form extends Component<any, FormState> {
 
   public isFormIsLegal = () => {
     let isLegal = true;
-    if (!this.state.credentials.phone || !this.state.credentials.email || !this.state.credentials.name) {
+    if (
+      !this.state.credentials.phone ||
+      !this.state.credentials.email ||
+      !this.state.credentials.name
+    ) {
       isLegal = false;
     }
     return isLegal;
-  }
-
+  };
 
   public upPlaceholders = (name: string) => (e: any) => {
     const focused = { ...this.state.focused };
@@ -146,17 +151,28 @@ export class Form extends Component<any, FormState> {
     const focused = { ...this.state.focused };
     switch (name) {
       case "name":
-        if (!this.state.credentials.name && this.state.errors.nameError !== 'I also have a last name... What about you?') {
+        if (
+          !this.state.credentials.name &&
+          this.state.errors.nameError !==
+            "I also have a last name... What about you?"
+        ) {
           focused.name = false;
         }
         break;
       case "phone":
-        if (!this.state.credentials.phone && this.state.errors.phoneError !== 'Sorry, your phone number does not match my regex.') {
+        if (
+          !this.state.credentials.phone &&
+          this.state.errors.phoneError !==
+            "Sorry, your phone number does not match my regex."
+        ) {
           focused.phone = false;
         }
         break;
       case "email":
-        if (!this.state.credentials.email && this.state.errors.emailError !== 'Did you just invent an email?') {
+        if (
+          !this.state.credentials.email &&
+          this.state.errors.emailError !== "Did you just invent an email?"
+        ) {
           focused.email = false;
         }
         break;
@@ -174,167 +190,191 @@ export class Form extends Component<any, FormState> {
 
   public sendForm = async () => {
     try {
+      this.setState({isFormSent: true});
       const headers = {
         processData: false,
         contentType: false,
         cache: false,
-        enctype: 'multipart/form-data',
-        "Access-Control-Allow-Origin": "*"
-      }
-      const response = await axios.post('https://hooks.zapier.com/hooks/catch/3149413/by3wogy/', this.state.credentials, {
-        headers: headers
-      });
-      console.log(response.data);
-    }
-    catch (err) {
+        enctype: "multipart/form-data",
+        "Access-Control-Allow-Origin": "*",
+      };
+      const response = await axios.post(
+        "https://hooks.zapier.com/hooks/catch/3149413/by3wogy/",
+        this.state.credentials,
+        {
+          headers: headers,
+        }
+      );
+    } catch (err) {
       console.log(err.message);
     }
-  }
+  };
 
   public render() {
     return (
       <div className="form" id="form">
-        <div className="inside-form">
-          <h1>contact me</h1>
-          <h3>
-            Here you can tell me about some really awesome jobs, a problems you
-            found on any of my assets, <br className="only-desktop"/>
-            or anything you like :){" "}
-            <br />
-            <span className="explaination">Fields marked with-* are required</span>
-          </h3>
+        {this.state.isFormSent && (
+          <div className="inside-form">
+            <img className="thanks-gif" src="./assets/images/giphy.gif"/>
+            <h1>I promise to reply to your message <br/>
+            as soon as possible!</h1>
+          </div>
+        )}
+        {!this.state.isFormSent && (
+          <div className="inside-form">
+            <h1>contact me</h1>
+            <h3>
+              Here you can tell me about some really awesome jobs, a problems
+              you found on any of my assets, <br className="only-desktop" />
+              or anything you like :) <br />
+              <span className="explaination">
+                Fields marked with-* are required
+              </span>
+            </h3>
 
-          <form>
-            <div className="first-section">
-              <div className="fname-area field">
-                <span
-                  className={
-                    !this.state.focused.name
-                      ? "form-title"
-                      : "form-title active-field"
-                  }
-                >
-                  Full name *
-                </span>
-                <input
-                  onFocus={this.upPlaceholders("name")}
-                  onInput={this.setName}
-                  onBlur={this.isDownPlaceholder('name')}
-                  className="fname-field"
-                  name="fname"
-                  type="text"
-                />
-                <span className="error">{this.state.errors.nameError}</span>
+            <form>
+              <div className="first-section">
+                <div className="fname-area field">
+                  <span
+                    className={
+                      !this.state.focused.name
+                        ? "form-title"
+                        : "form-title active-field"
+                    }
+                  >
+                    Full name *
+                  </span>
+                  <input
+                    onFocus={this.upPlaceholders("name")}
+                    onInput={this.setName}
+                    onBlur={this.isDownPlaceholder("name")}
+                    className="fname-field"
+                    name="fname"
+                    type="text"
+                  />
+                  <span className="error">{this.state.errors.nameError}</span>
+                </div>
+                <div className="phone-area field">
+                  <span
+                    className={
+                      !this.state.focused.phone
+                        ? "form-title"
+                        : "form-title active-field"
+                    }
+                  >
+                    Phone number
+                  </span>
+                  <input
+                    onFocus={this.upPlaceholders("phone")}
+                    onInput={this.setPhone}
+                    onBlur={this.isDownPlaceholder("phone")}
+                    className="phone-field"
+                    name="phone"
+                    type="number"
+                  />
+                  <span className="error">{this.state.errors.phoneError}</span>
+                </div>
               </div>
-              <div className="phone-area field">
-                <span
-                  className={
-                    !this.state.focused.phone
-                      ? "form-title"
-                      : "form-title active-field"
-                  }
-                >
-                  Phone number
-                </span>
-                <input
-                  onFocus={this.upPlaceholders("phone")}
-                  onInput={this.setPhone}
-                  onBlur={this.isDownPlaceholder('phone')}
-                  className="phone-field"
-                  name="phone"
-                  type="number"
-                />
-                <span className="error">{this.state.errors.phoneError}</span>
+              <div className="second-section">
+                <div className="email-area field">
+                  <span
+                    className={
+                      !this.state.focused.email
+                        ? "form-title"
+                        : "form-title active-field"
+                    }
+                  >
+                    Email *
+                  </span>
+                  <input
+                    onFocus={this.upPlaceholders("email")}
+                    onBlur={this.isDownPlaceholder("email")}
+                    className="email-field"
+                    onInput={this.setEmail}
+                    name="email"
+                    type="text"
+                  />
+                  <span className="error">{this.state.errors.emailError}</span>
+                </div>
+                <div className="message-area field">
+                  <span
+                    className={
+                      !this.state.focused.message
+                        ? "form-title"
+                        : "form-title active-field"
+                    }
+                  >
+                    Message
+                  </span>
+                  <textarea
+                    onInput={this.setMessage}
+                    onFocus={this.upPlaceholders("message")}
+                    onBlur={this.isDownPlaceholder("message")}
+                    rows={4}
+                    name="message"
+                    className="message-field"
+                  />
+                  <span className="error">
+                    {this.state.errors.messageError}
+                  </span>
+                </div>
               </div>
-            </div>
-            <div className="second-section">
-              <div className="email-area field">
-                <span
-                  className={
-                    !this.state.focused.email
-                      ? "form-title"
-                      : "form-title active-field"
-                  }
-                >
-                  Email *
-                </span>
-                <input
-                  onFocus={this.upPlaceholders("email")}
-                  onBlur={this.isDownPlaceholder('email')}
-                  className="email-field"
-                  onInput={this.setEmail}
-                  name="email"
-                  type="text"
-                />
-                <span className="error">{this.state.errors.emailError}</span>
-              </div>
-              <div className="message-area field">
-                <span
-                  className={
-                    !this.state.focused.message
-                      ? "form-title"
-                      : "form-title active-field"
-                  }
-                >
-                  Message
-                </span>
-                <textarea
-                  onInput={this.setMessage}
-                  onFocus={this.upPlaceholders("message")}
-                  onBlur={this.isDownPlaceholder('message')}
-                  rows={4}
-                  name="message"
-                  className="message-field"
-                />
-                <span className="error">{this.state.errors.messageError}</span>
-              </div>
-            </div>
-          </form>
+            </form>
 
-          <div className={this.isFormIsLegal() ? "send-circle ilegal-form" : "send-circle"}>
-            <div className="middle-of-send-circle" onClick={() => { if (this.isFormIsLegal()) { this.sendForm() } }}>
-              <span
-                className={
-                  this.isFormIsLegal() ? "lock unlocked" : "lock"
-                }
-              ></span>
-              {this.isFormIsLegal() && <span>Send</span>}
-            </div>
-            <div className="first-section">
+            <div
+              className={
+                this.isFormIsLegal() ? "send-circle ilegal-form" : "send-circle"
+              }
+            >
               <div
-                className={
-                  this.getProgressForCircle() >= 2
-                    ? "one-on-circle rib filled-rib"
-                    : "one-on-circle rib"
-                }
-              ></div>
-              <div
-                className={
-                  this.getProgressForCircle() >= 3
-                    ? "two-on-circle rib filled-rib"
-                    : "two-on-circle rib"
-                }
-              ></div>
-            </div>
+                className="middle-of-send-circle"
+                onClick={() => {
+                  if (this.isFormIsLegal()) {
+                    this.sendForm();
+                  }
+                }}
+              >
+                <span
+                  className={this.isFormIsLegal() ? "lock unlocked" : "lock"}
+                ></span>
+                {this.isFormIsLegal() && <span>Send</span>}
+              </div>
+              <div className="first-section">
+                <div
+                  className={
+                    this.getProgressForCircle() >= 2
+                      ? "one-on-circle rib filled-rib"
+                      : "one-on-circle rib"
+                  }
+                ></div>
+                <div
+                  className={
+                    this.getProgressForCircle() >= 3
+                      ? "two-on-circle rib filled-rib"
+                      : "two-on-circle rib"
+                  }
+                ></div>
+              </div>
 
-            <div className="second-section">
-              <div
-                className={
-                  this.getProgressForCircle() >= 1
-                    ? "three-on-circle rib filled-rib"
-                    : "three-on-circle rib"
-                }
-              ></div>
-              <div
-                className={
-                  this.getProgressForCircle() >= 4
-                    ? "four-on-circle rib filled-rib"
-                    : "four-on-circle rib"
-                }
-              ></div>
+              <div className="second-section">
+                <div
+                  className={
+                    this.getProgressForCircle() >= 1
+                      ? "three-on-circle rib filled-rib"
+                      : "three-on-circle rib"
+                  }
+                ></div>
+                <div
+                  className={
+                    this.getProgressForCircle() >= 4
+                      ? "four-on-circle rib filled-rib"
+                      : "four-on-circle rib"
+                  }
+                ></div>
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     );
   }

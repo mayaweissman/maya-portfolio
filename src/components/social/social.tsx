@@ -10,7 +10,7 @@ interface SocialState {
   socialElements: SocialModel[];
   isAfterAnimation: boolean;
   isCenterAvailable: boolean;
-  isOnMobile: boolean
+  isOnMobile: boolean;
 }
 
 export class Social extends Component<any, SocialState> {
@@ -32,7 +32,7 @@ export class Social extends Component<any, SocialState> {
       socialElements: getSocial(),
       isAfterAnimation: false,
       isCenterAvailable: false,
-      isOnMobile: false
+      isOnMobile: false,
     };
   }
 
@@ -44,11 +44,11 @@ export class Social extends Component<any, SocialState> {
     if (window.screen.width < 600) {
       this.setState({ isOnMobile: true });
     }
-    }
+  }
 
   public dragSocial = (social: string) => (e: any) => {
     //Enable function only if animation end
-    if (this.state.isAfterAnimation) {
+    if (!this.state.isAfterAnimation) {
       this.setState({ isOnDrag: true });
       this.setState({ isCenterAvailable: false });
       //Restart all drggaing for socials ojects
@@ -105,7 +105,62 @@ export class Social extends Component<any, SocialState> {
                 positions[index].left = -4;
                 positions[index].top = -4;
                 this.setState({ positions });
-                document.removeEventListener("mousemove", () => { }, true);
+                document.removeEventListener("mousemove", () => {}, true);
+                this.setState({ isOnDrag: false });
+                return;
+              }
+            });
+          }
+        }
+      });
+      document.addEventListener("touchmove", (e) => {
+        document.body.style.overflow = "hidden";
+        console.log('move');
+        const isSocialUsedForDrag = this.state.socialElements.find(
+          (s) => s.name === social
+        )?.isOnDrag;
+        if (this.state.isOnDrag && isSocialUsedForDrag) {
+          const clientX = e.touches[0].clientX;
+          const clientY = e.touches[0].clientY;
+          const elementX = document
+            .querySelector(`.${social}`)
+            ?.getBoundingClientRect().x;
+          const elementY = document
+            .querySelector(`.${social}`)
+            ?.getBoundingClientRect().y;
+          if (elementX && elementY) {
+            const x = clientX - elementX - 25;
+            const y = clientY - elementY - 25;
+            const positions = [...this.state.positions];
+            const index = positions.findIndex((p) => p.name === social);
+            positions[index].left = x;
+            positions[index].top = y;
+            this.setState({ positions });
+
+            document.addEventListener("click", (e) => {
+              if (this.state.isCenterAvailable) {
+                console.log('click');
+                const elementNameToCenter = this.state.socialElements.find(
+                  (s) => s.name === social
+                );
+                if (elementNameToCenter) {
+                  this.setState({ elementNameToCenter });
+                  this.setState({ isOnDrag: false });
+                  const updatedPositions = [...this.state.positions];
+                  for (const p of updatedPositions) {
+                    p.left = -4;
+                    p.top = -4;
+                  }
+                  this.setState({ positions: updatedPositions });
+                  setTimeout(() => {
+                    window.open(this.state.elementNameToCenter.url, "_blank");
+                  }, 1000);
+                }
+              } else {
+                positions[index].left = -4;
+                positions[index].top = -4;
+                this.setState({ positions });
+                document.removeEventListener("mousemove", () => {}, true);
                 this.setState({ isOnDrag: false });
                 return;
               }
@@ -115,6 +170,10 @@ export class Social extends Component<any, SocialState> {
       });
     }
   };
+
+  public touchEnd = ()=>{
+   //Need to create two new functions for start and end draggign
+  }
 
   public openSocial = () => {
     if (this.state.isOnDrag) {
@@ -148,14 +207,18 @@ export class Social extends Component<any, SocialState> {
                 <>
                   <div
                     onDragStart={this.dragSocial(s.name as string)}
+                    onTouchStart={this.dragSocial(s.name as string)}
+                    onTouchEnd={this.touchEnd}
                     onClick={this.dragSocial(s.name as string)}
                     className="social-circle"
                     style={{
-                      left: `${this.state.positions.find((p) => p.name === s.name)
-                        ?.left
-                        }px`,
-                      top: `${this.state.positions.find((p) => p.name === s.name)?.top
-                        }px`,
+                      left: `${
+                        this.state.positions.find((p) => p.name === s.name)
+                          ?.left
+                      }px`,
+                      top: `${
+                        this.state.positions.find((p) => p.name === s.name)?.top
+                      }px`,
                     }}
                   >
                     <img src={`./assets/images/${s.imgSrc}`} />

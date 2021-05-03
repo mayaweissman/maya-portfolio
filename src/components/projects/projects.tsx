@@ -5,6 +5,7 @@ import { ProjectModel } from "../../models/projectModel";
 import { getProjects } from "../../data/projects";
 import { store } from "../../redux/store";
 import { ActionType } from "../../redux/actionType";
+import AddIcon from '@material-ui/icons/Add';
 
 interface ProjectsState {
   allProjects: ProjectModel[];

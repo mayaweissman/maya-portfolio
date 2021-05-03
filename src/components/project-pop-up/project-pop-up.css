@@ -75,3 +75,71 @@
     background-color: var(--bg-dark);
     border-radius: 50%;
 }
+
+.mobile .project-pop-up {
+    position: fixed;
+    height: 100%;
+    width: 100vw;
+    top: 0;
+    z-index: 999;
+    background-color: #00000094;
+    animation: FadeInPopUp 0.6s;
+}
+
+.mobile .inside-project-pop-up {
+    height: 90%;
+    width: 80vw;
+    background-color: var(--light-bg);
+    position: absolute;
+    top: 5vw;
+    right: 50%;
+    color: var(--off-white);
+    animation: Bounce 1s both;
+    animation-delay: 0.3s;
+    transform-origin: right;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mobile .inside-project-pop-up > video {
+    width: 69vw;
+    height: 30vw;
+}
+
+.mobile .frameworks {
+    display: flex;
+    font-family: monospace;
+    position: relative;
+    margin-top: 16vw;
+    flex-direction: column;
+}
+
+.mobile .framework {
+    border: 1px solid;
+    font-size: 5.2vw;
+    padding: 1.5vw;
+    margin: 3vw;
+    border-radius: 0.7vw;
+    box-shadow: 0 0 16px -4px;
+}
+
+.mobile .url-icon {
+    position: relative;
+    top: 15vw;
+    background-color: var(--bg-dark);
+    border-radius: 50%;
+    width: 15vw;
+    height: 15vw;
+}
+
+.mobile .MuiSvgIcon-root {
+    fill: currentColor;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    font-size: 8vw !important;
+    transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    flex-shrink: 0;
+    user-select: none;
+}

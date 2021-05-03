@@ -8,5 +8,6 @@ export class AppState {
   public projectForPopUP: ProjectModel = new ProjectModel()
   // public projectForPopUP: ProjectModel = new ProjectModel()
 
-  public constructor() { }
+  public constructor() { 
+  }
 }

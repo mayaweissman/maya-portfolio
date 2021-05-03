@@ -13,7 +13,7 @@
   position: absolute;
   top: 50%;
   right: 50%;
-  box-shadow: 0 0 66px -3px var(--off-white);
+  /* box-shadow: 0 0 66px -3px var(--off-white); */
   transform: translateX(50%) translateY(-50%);
   color: var(--off-white);
 }

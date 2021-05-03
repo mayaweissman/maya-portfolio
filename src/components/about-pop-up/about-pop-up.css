@@ -81,3 +81,45 @@
     padding: 1vw;
     font-size: 1.1vw;
 }
+
+.mobile .about-pop-up {
+    position: fixed;
+    height: 100%;
+    width: 100vw;
+    top: 0;
+    z-index: 999;
+    background-color: #00000094;
+    animation: FadeInPopUp .6s;
+}
+
+.mobile .inside-about-pop-up {
+    height: 90%;
+    width: 80vw;
+    background-color: var(--light-bg);
+    position: absolute;
+    top: 5vw;
+    right: 50%;
+    color: var(--off-white);
+    animation: Bounce 1s both;
+    animation-delay: 0.3s;
+    transform-origin: right;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mobile .inside-about-pop-up > h1 {
+    text-transform: uppercase;
+    font-size: 6vw;
+}
+
+.mobile .about-image {
+    width: 29vw;
+}
+
+
+.mobile .content-area {
+    text-align: left;
+    padding: 1vw;
+    font-size: 3.3vw;
+}
