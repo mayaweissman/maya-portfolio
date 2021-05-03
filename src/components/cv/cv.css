@@ -62,3 +62,51 @@
 .download:hover > span{
     opacity: 1;
 }
+
+
+.mobile .cv {
+    height: 90vw;
+    width: 100%;
+    background-color: var(--light-bg);
+    position: absolute;
+    top: 601vw;
+}
+
+.mobile .cv-inside {
+    position: absolute;
+    height: 65vw;
+    width: 80vw;
+    background-color: var(--bg-dark);
+    top: 50%;
+    right: 50%;
+    transform: translateX(50%) translateY(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.mobile .cv > .cv-inside > h1 {
+    text-transform: uppercase;
+    color: var(--off-white);
+    font-size: 6.5vw;
+}
+
+.mobile .download > a {
+    background-color: var(--pink);
+    border-radius: 50%;
+    height: 20vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20vw;
+    margin-bottom: 11vw;
+    transition: all .8s ease-in-out;
+}
+
+
+.mobile .download > span {
+    opacity: 1;
+    transition: all .8s ease-in-out;
+    white-space: nowrap;
+}

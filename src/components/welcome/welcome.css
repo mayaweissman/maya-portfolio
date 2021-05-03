@@ -609,3 +609,54 @@
   opacity: 1;
   width: 120%;
 }
+
+
+.mobile .welcome {
+  background-color: var(--bg-dark);
+  height: 180vw;
+  width: 100%;
+}
+
+.mobile .hello {
+  color: var(--blue);
+  font-size: 22vw;
+  position: absolute;
+  top: 23vw;
+  right: 50%;
+  font-family: "FuturaMedium";
+  font-weight: bold;
+  animation: SlideIn 1s both linear;
+}
+
+.mobile .name {
+  position: absolute;
+  top: 60vw;
+  right: 50%;
+  transform: translateX(50%);
+  color: var(--red);
+  font-size: 7vw;
+  font-family: monospace;
+  width: 94vw;
+}
+
+.mobile .explore-more-btn {
+  width: 58vw;
+  height: 15vw;
+  color: var(--yellow);
+  top: 148vw;
+  font-family: "Futura";
+  font-weight: 500;
+  font-size: 4vw;
+  text-transform: uppercase !important;
+  letter-spacing: 2px;
+  text-align: center;
+  border: 2px solid var(--yellow);
+  position: absolute;
+  overflow: hidden !important;
+  transition: all 0.3s ease-in-out;
+  background-color: var(--semi-dark-bg);
+  z-index: 10;
+  right: 50%;
+  transform: translateX(50%);
+}
+

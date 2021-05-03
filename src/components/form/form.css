@@ -30,7 +30,6 @@
   margin: 0.5vw;
   font-size: 1vw;
   text-align: left;
-
 }
 
 form {
@@ -134,7 +133,7 @@ textarea {
   margin: 0;
 }
 
-.ilegal-form .filled-rib{
+.ilegal-form .filled-rib {
   background-color: var(--light-green);
 }
 
@@ -190,22 +189,22 @@ textarea {
   transform: translateX(50%) translateY(-50%);
 }
 
-.lock:hover{
+.lock:hover {
   cursor: auto;
 }
 
 .lock:after {
-    content: "";
-    display: block;
-    background: var(--red);
-    width: 0.15vw;
-    height: 0.7vw;
-    position: absolute;
-    top: 50%;
-    right: 50%;
-    transform: translateX(50%) translateY(-50%);
-    margin: -3.5px 0 0 -2px;
-    transition: all 0.1s ease-in-out;
+  content: "";
+  display: block;
+  background: var(--red);
+  width: 0.15vw;
+  height: 0.7vw;
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translateX(50%) translateY(-50%);
+  margin: -3.5px 0 0 -2px;
+  transition: all 0.1s ease-in-out;
 }
 
 .lock:before {
@@ -241,20 +240,20 @@ textarea {
   background: var(--light-green);
 }
 
-.send-btn{
-    position: absolute;
-    text-transform: uppercase;
-    top: 5vw;
-    right: 50%;
-    font-size: 1vw;
-    transform: translateX(50%);
-    color: var(--light-bg);
-    transition: all .2s ease-in-out;
+.send-btn {
+  position: absolute;
+  text-transform: uppercase;
+  top: 5vw;
+  right: 50%;
+  font-size: 1vw;
+  transform: translateX(50%);
+  color: var(--light-bg);
+  transition: all 0.2s ease-in-out;
 }
 
-.send-btn:hover{
-    cursor: pointer;
-    color: rgba(88, 88, 88, 0.77);
+.send-btn:hover {
+  cursor: pointer;
+  color: rgba(88, 88, 88, 0.77);
 }
 
 /* Change the white to any color */
@@ -274,4 +273,241 @@ input:-webkit-autofill:active {
   position: relative;
   font-size: 0.8vw;
   top: 0.5vw;
+}
+
+.mobile .form {
+  background-color: var(--light-bg);
+  height: 159vw;
+  width: 100%;
+  position: absolute;
+  top: 826vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mobile .form {
+  background-color: var(--light-bg);
+  height: 159vw;
+  width: 100%;
+  position: absolute;
+  top: 846vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mobile .inside-form {
+  position: absolute;
+  width: 80vw;
+  height: 145vw;
+  display: flex;
+  background-color: var(--bg-dark);
+  flex-direction: column;
+  align-items: center;
+}
+
+.mobile .inside-form > h3 {
+  color: var(--off-white);
+  width: 70vw;
+  margin: 0.5vw;
+  font-size: 4vw;
+  text-align: left;
+}
+
+.mobile .explaination {
+  color: var(--off-white);
+  text-align: left;
+  position: relative;
+  font-size: 3.8vw;
+  top: 4.5vw;
+}
+
+.first-section,
+.second-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile .field {
+  height: 6.5vw;
+  display: flex;
+  flex-direction: column;
+  margin: 5vw 0;
+  position: relative;
+}
+
+.mobile input {
+  background-color: transparent;
+  border: 0;
+  outline: none;
+  border-bottom: 2px solid var(--light-green);
+  color: var(--off-white);
+  width: 70vw;
+  font-size: 4.2vw;
+  z-index: 2;
+  font-family: monospace;
+}
+
+.mobile .form-title {
+  position: absolute;
+  font-size: 4.2vw;
+  z-index: 1;
+  left: 0;
+  transform: translateY(0);
+  transition: all 0.5s ease-in-out;
+}
+
+.mobile .inside-form > h1 {
+  color: var(--off-white);
+  text-transform: uppercase;
+  font-size: 7vw;
+  margin: 2vw;
+}
+
+.mobile form {
+  width: 42vw;
+  color: var(--off-white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 6.5vw;
+}
+
+.mobile textarea {
+  background-color: transparent;
+  border: 0;
+  outline: none;
+  border-bottom: 2px solid var(--light-green);
+  color: var(--off-white);
+  width: 70vw;
+  font-size: 4.2vw;
+  z-index: 2;
+  font-family: monospace;
+}
+
+.mobile .send-circle {
+  content: "";
+  background-color: transparent;
+  border: 0;
+  height: 32vw;
+  width: 32vw;
+  border-radius: 50%;
+  margin-top: 2vw;
+  position: relative;
+}
+
+.mobile .send-circle .first-section,
+.mobile .send-circle .second-section {
+  display: inline-flex;
+  flex-direction: unset;
+}
+
+.mobile .rib {
+  content: "";
+  background-color: rgb(224, 221, 221);
+  height: 16vw;
+  width: 16vw;
+  transition: all 1s ease-in-out;
+  margin: 0;
+}
+
+.mobile .second-section > .rib {
+  position: relative;
+  bottom: 1.1vw;
+}
+
+.mobile .filled-rib {
+  transition: all 0.5s ease-in-out;
+  background-color: var(--pink);
+}
+
+.mobile .middle-of-send-circle {
+  background-color: white;
+  content: "";
+  border-radius: 50%;
+  width: 20.5vw;
+  height: 20.5vw;
+  z-index: 1;
+  top: 50%;
+  position: absolute;
+  right: 50%;
+  transform: translateX(50%) translateY(-50%);
+}
+
+.mobile .lock {
+  width: 5.2vw;
+  height: 4vw;
+  border: 2px solid var(--red);
+  border-radius: 0.7vw;
+  position: absolute;
+  cursor: pointer;
+  top: 45%;
+  transition: all 0.1s ease-in-out;
+  right: 50%;
+  transform: translateX(50%) translateY(-50%);
+}
+
+.mobile .lock:before {
+  content: "";
+  display: block;
+  width: 3vw;
+  height: 3.1vw;
+  bottom: 102%;
+  position: absolute;
+  left: 0.7vw;
+  border: 2px solid var(--red);
+  border-top-right-radius: 50%;
+  border-top-left-radius: 50%;
+  border-bottom: 0;
+  transition: all 0.1s ease-in-out;
+}
+
+.mobile .lock:after {
+  content: "";
+  display: block;
+  background: var(--red);
+  width: 0.15vw;
+  height: 1.7vw;
+  position: absolute;
+  top: 52%;
+  right: 50%;
+  transform: translateX(50%) translateY(-50%);
+  margin: -3.5px 0 0 -2px;
+  transition: all 0.1s ease-in-out;
+}
+
+.mobile .error {
+  position: absolute;
+  top: 6.8vw;
+  right: 0;
+  font-size: 3vw;
+  color: var(--red);
+}
+
+.mobile .unlocked,
+.mobile .unlocked:before {
+  border-color: var(--light-green);
+}
+
+.mobile .unlocked:after {
+  background-color: var(--light-green);
+}
+
+.mobile .unlocked:before {
+  bottom: 114%;
+  left: 25%;
+  margin-left: -0.6vw;
+  transform: rotate(-25deg);
+}
+
+.mobile .middle-of-send-circle > span:nth-of-type(2) {
+  top: 12vw;
+  position: relative;
+}
+
+.mobile .active-field {
+  transform: translateY(-4vw);
+  font-size: 3.1vw;
+  transition: all 0.5s ease-in-out;
 }

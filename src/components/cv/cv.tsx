@@ -11,7 +11,7 @@ export class Cv extends Component {
           <h1>Download my cv</h1>
           <div className="download">
           <a href="./assets/pdf/maya-cv.pdf" download>
-              <GetAppIcon style={{fontSize: '4vw', color: "white"}}/>
+              <GetAppIcon style={{fontSize: window.screen.width < 600 ? '11vw' : '4vw', color: "white"}}/>
           </a>
           <span>If you need it all on PDF :)</span>
           </div>

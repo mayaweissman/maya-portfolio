@@ -10,6 +10,7 @@ interface SocialState {
   socialElements: SocialModel[];
   isAfterAnimation: boolean;
   isCenterAvailable: boolean;
+  isOnMobile: boolean
 }
 
 export class Social extends Component<any, SocialState> {
@@ -31,6 +32,7 @@ export class Social extends Component<any, SocialState> {
       socialElements: getSocial(),
       isAfterAnimation: false,
       isCenterAvailable: false,
+      isOnMobile: false
     };
   }
 
@@ -38,7 +40,11 @@ export class Social extends Component<any, SocialState> {
     setTimeout(() => {
       this.setState({ isAfterAnimation: true });
     }, 16000);
-  }
+
+    if (window.screen.width < 600) {
+      this.setState({ isOnMobile: true });
+    }
+    }
 
   public dragSocial = (social: string) => (e: any) => {
     //Enable function only if animation end
@@ -99,7 +105,7 @@ export class Social extends Component<any, SocialState> {
                 positions[index].left = -4;
                 positions[index].top = -4;
                 this.setState({ positions });
-                document.removeEventListener("mousemove", () => {}, true);
+                document.removeEventListener("mousemove", () => { }, true);
                 this.setState({ isOnDrag: false });
                 return;
               }
@@ -145,13 +151,11 @@ export class Social extends Component<any, SocialState> {
                     onClick={this.dragSocial(s.name as string)}
                     className="social-circle"
                     style={{
-                      left: `${
-                        this.state.positions.find((p) => p.name === s.name)
-                          ?.left
-                      }px`,
-                      top: `${
-                        this.state.positions.find((p) => p.name === s.name)?.top
-                      }px`,
+                      left: `${this.state.positions.find((p) => p.name === s.name)
+                        ?.left
+                        }px`,
+                      top: `${this.state.positions.find((p) => p.name === s.name)?.top
+                        }px`,
                     }}
                   >
                     <img src={`./assets/images/${s.imgSrc}`} />

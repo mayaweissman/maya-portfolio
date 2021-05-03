@@ -48,3 +48,30 @@
     opacity: 1;
   }
 }
+
+.mobile .layout {
+  height: 1030vw;
+  position: absolute;
+  width: 100%;
+  background-color: var(--light-bg);
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile .layout > header {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  z-index: 1;
+  top: unset;
+  height: 15vw;
+  background-color: transparent;
+}
+
+.only-desktop{
+  display: block;
+}
+
+.mobile .only-desktop{
+  display: none;
+}

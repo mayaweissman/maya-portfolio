@@ -26,6 +26,7 @@ html,
   font-family: "Futura";
   margin: 0;
   padding: 0;
+  background-color: rgb(51, 51, 51);
   scroll-behavior: smooth;
   --bg-dark: rgb(30, 30, 30);
   --semi-dark-bg: rgb(37, 37, 37);
@@ -37,5 +38,6 @@ html,
   --pink: rgb(199, 122, 164);
   --green: rgb(95, 120, 78);
   --orange: rgb(215, 186, 110);
+  --logo: rgb(64, 171, 242);
   --light-green: rgb(147, 206, 168);
 }

@@ -1,0 +1,192 @@
+.mobile-menu {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-item {
+  text-transform: uppercase;
+  width: 7vw;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9vw;
+  transition: all 0.5s linear;
+}
+
+.menu-item > a {
+  opacity: 0.4;
+  color: white;
+  transition: all 0.5s ease-in-out linear;
+  text-decoration: none;
+  border: 0;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.active-item {
+  border-bottom: 1px solid var(--pink);
+  transition: all 0.5s ease-in-out;
+}
+
+.menu .active {
+  border-bottom: 1px solid var(--pink);
+  transition: all 0.5s ease-in-out;
+}
+
+.menu .active > a {
+  opacity: 1;
+}
+
+.menu .menu-item:hover {
+  border-bottom: 1px solid var(--pink);
+}
+
+.menu a:hover {
+  opacity: 1;
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+
+.menu-circle{
+  content: "";
+  width: 17vw;
+  height: 17vw;
+  background-color: var(--logo);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 4vw;
+}
+
+
+.menu-popup{
+  content: "";
+  position: fixed;
+  height: 140vw;
+  width: 80vw;
+  z-index: 9999;
+  background-color: transparent;
+  top: 10vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-popup::before{
+  content: "";
+  height: 100%;
+  width: 50%;
+  position: absolute;
+  z-index: -1;
+  background-color: #ffffffd1;
+  animation: grow 1.5s both;
+  right: 40vw;
+}
+
+.mobile .menu-popup::after{
+  content: "";
+  height: 100%;
+  width: 50%;
+  position: absolute;
+  z-index: -1;
+  background-color: #ffffffd1;
+  animation: grow 1.5s both;
+  left: 40vw;
+}
+
+.mobile .close-popup .menu-popup::after{
+  animation: ungrow 1.5s both;
+}
+
+.mobile .close-popup .menu-popup::before{
+  animation: ungrow 1.5s both;
+}
+
+.mobile .pop-up-content{
+  animation: FadePopUP 0.5s both;
+  animation-delay: 1s;
+}
+
+
+.mobile .links{
+  width: 80vw;
+  height: 140vw;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: 32vw;
+}
+
+
+.mobile .menu-item {
+  text-transform: uppercase;
+  width: 100%;
+  height: 18vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 6vw;
+  transition: all 0.5s linear;
+
+}
+
+.mobile .active-item {
+    border-bottom: 0;
+    transition: all 0.5s ease-in-out;
+}
+
+.mobile .close-popup .pop-up-content{
+  display: none;
+}
+
+@keyframes grow{
+  0%{
+    width: 0;
+  }
+  100%{
+    width: 50%;
+  }
+
+}
+
+@keyframes ungrow{
+  0%{
+    width: 50%;
+  }
+  100%{
+    width: 0;
+  }
+
+}
+
+@keyframes FadePopUP{
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+
+}
+
+.mobile .menu-item > a {
+  color: var(--bg-dark);
+  opacity: 1;
+  transition: all 0.5s ease-in-out linear;
+  text-decoration: none;
+  border: 0;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

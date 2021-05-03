@@ -198,7 +198,7 @@ export class Form extends Component<any, FormState> {
           <h1>contact me</h1>
           <h3>
             Here you can tell me about some really awesome jobs, a problems you
-            found on any of my assets, <br />
+            found on any of my assets, <br className="only-desktop"/>
             or anything you like :){" "}
             <br />
             <span className="explaination">Fields marked with-* are required</span>

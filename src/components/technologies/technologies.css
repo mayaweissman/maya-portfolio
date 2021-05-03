@@ -248,3 +248,78 @@ transition: all .5s ease-in-out;
     opacity: 1;
   }
 }
+
+.mobile .technologies {
+  position: absolute;
+  top: 317vw;
+  width: 100%;
+  height: 154vw;
+  background-color: var(--light-bg);
+  z-index: 1;
+}
+
+
+.mobile .technologies-area {
+  height: 135vw;
+  width: 80vw;
+  position: absolute;
+  right: 50%;
+  top: 50%;
+  transform: translateX(50%) translateY(-50%);
+  background-color: var(--bg-dark);
+}
+
+
+.mobile .technologies-area > h1 {
+  text-transform: uppercase;
+  color: var(--off-white);
+  z-index: 2;
+  position: absolute;
+  width: 70vw;
+  right: 50%;
+  transform: translateX(50%);
+}
+
+
+.mobile .stack {
+  content: "";
+  height: 94vw;
+  width: 33vw;
+  border: 2px solid white;
+  border-top: 0;
+  margin: 0 1.3vw;
+  position: relative;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+
+.mobile .stacks {
+  position: absolute;
+  right: 50%;
+  top: 24vw;
+  transform: translateX(50%);
+  display: flex;
+}
+
+.mobile .stack-title {
+  color: var(--off-white);
+  text-transform: uppercase;
+  position: absolute;
+  top: 97vw;
+  right: 50%;
+  transform: translateX(50%);
+}
+
+.mobile .tech {
+  background-color: var(--semi-dark-bg);
+  height: 9vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-size: 4vw;
+  width: 100%;
+  z-index: 1;
+  opacity: 0;
+}
