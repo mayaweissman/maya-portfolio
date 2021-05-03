@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./mobile-menu.css";
 import MenuIcon from "@material-ui/icons/Menu";
 import CloseIcon from "@material-ui/icons/Close";
-import IconButton from "@material-ui/core/IconButton";
 import { TransferWithinAStationSharp } from "@material-ui/icons";
 
 interface MobileMenuState {

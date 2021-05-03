@@ -16,8 +16,22 @@ export function reducer(oldAppState: AppState, action: Action): AppState {
       }
       break;
 
+    case ActionType.changeDisplayForProjectPopUp:
+      if (!newAppState.isProjectPopUpShow) {
+        newAppState.isProjectPopUpShow = true;
+      }
+      else {
+        newAppState.isProjectPopUpShow = false;
+      }
+      break;
+
     case ActionType.getContentForAboutPopUp:
       newAppState.contentForAboutPopUp = action.payLoad;
+      break;
+
+    case ActionType.getProjectForPopUp:
+      console.log(action.payLoad);
+      newAppState.projectForPopUP = action.payLoad;
       break;
 
     default:

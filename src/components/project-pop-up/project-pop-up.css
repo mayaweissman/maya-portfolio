@@ -1,0 +1,77 @@
+.project-pop-up {
+  position: fixed;
+  height: 100vw;
+  width: 100vw;
+  top: 0;
+  z-index: 999;
+  background-color: #00000094;
+  animation: FadeInPopUp 0.6s;
+}
+
+.inside-project-pop-up {
+  height: 40vw;
+  width: 50vw;
+  background-color: var(--light-bg);
+  position: absolute;
+  top: 5vw;
+  right: 50%;
+  color: var(--off-white);
+  animation: Bounce 1s both;
+  animation-delay: 0.3s;
+  transform-origin: right;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inside-project-pop-up > h1{
+    text-transform: uppercase;
+}
+
+.inside-project-pop-up > video {
+  width: 40vw;
+  height: 20vw;
+}
+
+.frameworks{
+    display: flex;
+    font-family: monospace;
+    position: relative;
+    margin-top: 4vw;
+}
+
+.framework {
+    border: 1px solid;
+    font-size: 1.2vw;
+    padding: 0.5vw;
+    margin: 0 0.8vw;
+    border-radius: 0.7vw;
+    box-shadow: 0 0 16px -4px;
+}
+
+.framework:nth-of-type(1){
+    color: var(--pink);
+    border-color: var(--pink);
+}
+
+.framework:nth-of-type(2){
+    color: var(--light-green);
+    border-color: var(--light-green);
+}
+
+.framework:nth-of-type(3){
+    color: var(--blue);
+    border-color: var(--blue);
+}
+
+.framework:nth-of-type(4){
+    color: var(--orange);
+    border-color: var(--orange);
+}
+
+.url-icon{
+    position: relative;
+    top: 3vw;
+    background-color: var(--bg-dark);
+    border-radius: 50%;
+}

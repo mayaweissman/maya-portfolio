@@ -7,6 +7,7 @@ import { Cv } from "../cv/cv";
 import { Form } from "../form/form";
 import { Menu } from "../menu/menu";
 import { MobileMenu } from "../mobile-menu/mobile-menu";
+import { ProjectPopUp } from "../project-pop-up/project-pop-up";
 import { Projects } from "../projects/projects";
 import { Social } from "../social/social";
 import { Technologies } from "../technologies/technologies";
@@ -15,6 +16,7 @@ import "./layout.css";
 
 interface LayoutState {
   display: boolean,
+  diplayForProjectPopUp: boolean,
   scroll: number,
   isOnMobile: boolean
 }
@@ -27,6 +29,7 @@ export class Layout extends Component<any, LayoutState>{
     super(props);
     this.state = {
       display: store.getState().isAboutPopUpShow,
+      diplayForProjectPopUp: store.getState().isProjectPopUpShow,
       scroll: 0,
       isOnMobile: false
     }
@@ -34,6 +37,8 @@ export class Layout extends Component<any, LayoutState>{
     this.unsubscribeStore = store.subscribe(() => {
       const display = store.getState().isAboutPopUpShow;
       this.setState({ display });
+      const diplayForProjectPopUp = store.getState().isProjectPopUpShow;
+      this.setState({ diplayForProjectPopUp });
     })
   }
 
@@ -41,6 +46,8 @@ export class Layout extends Component<any, LayoutState>{
     this.unsubscribeStore = store.subscribe(() => {
       const display = store.getState().isAboutPopUpShow;
       this.setState({ display });
+      const diplayForProjectPopUp = store.getState().isProjectPopUpShow;
+      this.setState({ diplayForProjectPopUp });
     });
 
     if (window.screen.width < 600) {
@@ -52,7 +59,6 @@ export class Layout extends Component<any, LayoutState>{
 
     window.addEventListener('scroll', () => {
       const scroll = +this.getVerticalScrollPercentage(document.body);
-      console.log(scroll);
       this.setState({ scroll })
     })
   }
@@ -98,6 +104,7 @@ export class Layout extends Component<any, LayoutState>{
           </main>
         }
         {this.state.display && <AboutPopUp />}
+        {this.state.diplayForProjectPopUp && <ProjectPopUp />}
 
       </div>
     );

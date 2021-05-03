@@ -1,5 +1,7 @@
 export enum ActionType { 
 changeDisplayForAboutPopUp,
-getContentForAboutPopUp
+changeDisplayForProjectPopUp,
+getContentForAboutPopUp,
+getProjectForPopUp,
     
 }

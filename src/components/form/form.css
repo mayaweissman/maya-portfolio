@@ -323,8 +323,8 @@ input:-webkit-autofill:active {
   top: 4.5vw;
 }
 
-.first-section,
-.second-section {
+.mobile .first-section,
+.mobile .second-section {
   display: flex;
   flex-direction: column;
 }

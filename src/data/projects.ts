@@ -2,22 +2,18 @@ export function getProjects() {
     const projects = [
       {
         id: 1,
-        title: "Influencers - Peres Academy",
+        title: "Influencers",
         imgSrc:"hashtag.png",
-        videoSrc: "",
+        videoSrc: "peres.mp4",
         url:"https://peres-pac.co.il/influencers/",
-        gitLink: "",
-        content: "A Vanilla.js lanading page, Made for Peres Academy.",
         frameworks: ['JavaScript', 'CSS', 'HTML']
       },
       {
         id: 2,
-        title: "Nissan specials sales day",
+        title: "Nissan",
         imgSrc:"28.png",
-        videoSrc: "",
+        videoSrc: "nissan.mp4",
         url:"https://campaigns.nissan.co.il/ao/campaigns/january-sale-2021/",
-        gitLink: "",
-        content: "A Vanilla.js & Wordpress admin area lanading page, Made for Carasso group.",
         frameworks: ['JavaScript', 'CSS', 'HTML', 'PHP']
       },
       {
@@ -26,8 +22,78 @@ export function getProjects() {
         imgSrc:"recursion.png",
         videoSrc: "",
         url:"#",
-        gitLink: "",
-        content: "",
+        frameworks: ['React', 'CSS', 'TypeScript']
+      },
+      {
+        id: 4,
+        title: "Infinity",
+        imgSrc:"car.png",
+        videoSrc: "infinity.mp4",
+        url:"https://campaigns.infiniti-cars.co.il/ao/campaigns/qx60/",
+        frameworks: ['JavaScript', 'CSS', 'HTML', 'PHP']
+      },
+      {
+        id: 5,
+        title: "Ikea plants",
+        imgSrc:"plant.png",
+        videoSrc: "ikea.mp4",
+        url:"https://github.com/mayaweissman/ikea",
+        frameworks: ['React', 'CSS', 'TypeScript']
+      },
+      {
+        id: 6,
+        title: "Factorie's system",
+        imgSrc:"react.png",
+        videoSrc: "factory.mp4",
+        url:"https://github.com/mayaweissman/factory",
+        frameworks: ['React', 'CSS', 'TypeScript']
+      },
+      {
+        id: 7,
+        title: "Shahal",
+        imgSrc:"shahal.png",
+        videoSrc: "shahal.webm",
+        url:"https://www.shahal.co.il/lp/shahal/pirpur_aliyut/",
+        frameworks: ['JavaScript', 'CSS', 'HTML']
+      },
+      {
+        id: 8,
+        title: "Task board",
+        imgSrc:"task-board.png",
+        videoSrc: "task-board.webm",
+        url:"https://maya-task-board.herokuapp.com",
+        frameworks: ['JavaScript', 'CSS', 'HTML']
+      },
+      {
+        id: 9,
+        title: "U-fit",
+        imgSrc:"ufit.png",
+        videoSrc: "ufit.webm",
+        url:"https://ufit-mw.herokuapp.com/",
+        frameworks: ['React', 'CSS', 'TypeScript']
+      },
+      {
+        id: 10,
+        title: "Green Market",
+        imgSrc: "green-market.png",
+        videoSrc: "green-market.webm",
+        url:"https://github.com/mayaweissman/green-market",
+        frameworks: ['Angular', 'CSS', 'TypeScript']
+      },
+      {
+        id: 11,
+        title: "Crypto",
+        imgSrc:"crypto.png",
+        videoSrc: "crypto.webm",
+        url:"https://crypto-by-mw.web.app/",
+        frameworks: ['JavaScript', 'CSS', 'Bootstrap']
+      },
+      {
+        id: 12,
+        title: "Sky Line",
+        imgSrc:"skyline.png",
+        videoSrc: "sky-line.webm",
+        url:"https://sky-line-mw.herokuapp.com",
         frameworks: ['React', 'CSS', 'TypeScript']
       },
     ];
