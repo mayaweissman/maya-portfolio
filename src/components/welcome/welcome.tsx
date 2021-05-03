@@ -5,8 +5,15 @@ export class Welcome extends Component {
 
   public slideDown = ()=>{
     const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-    window.scrollTo(0, vw);
+    window.scrollTo(0, this.getVerticalScrollPercentage(document.body,18));
   }
+
+  
+  public getVerticalScrollPercentage(elm: any, percentage: number) {
+    var p = elm.parentNode
+    return p.scrollHeight / 100 * percentage;
+  }
+
 
   public render() {
     return (

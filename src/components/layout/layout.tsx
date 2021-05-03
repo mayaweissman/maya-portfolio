@@ -52,6 +52,7 @@ export class Layout extends Component<any, LayoutState>{
 
     window.addEventListener('scroll', () => {
       const scroll = +this.getVerticalScrollPercentage(document.body);
+      console.log(scroll);
       this.setState({ scroll })
     })
   }
@@ -88,12 +89,12 @@ export class Layout extends Component<any, LayoutState>{
 
         {this.state.isOnMobile &&
           <main>
-            {this.state.scroll >= 0 && <About />}
-            {this.state.scroll >= 0 && <Technologies />}
-            {this.state.scroll >= 0 && <Projects />}
-            {this.state.scroll >= 0 && <Cv />}
-            {this.state.scroll >= 0 && <Social />}
-            {this.state.scroll >= 0 && <Form />}
+            {this.state.scroll >= 1 && <About />}
+            {this.state.scroll >= 16 && <Technologies />}
+            {this.state.scroll >= 35 && <Projects />}
+            {this.state.scroll >= 50 && <Cv />}
+            {this.state.scroll >= 60 && <Social />}
+            {this.state.scroll >= 78 && <Form />}
           </main>
         }
         {this.state.display && <AboutPopUp />}

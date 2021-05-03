@@ -18,7 +18,7 @@ export class MobileMenu extends Component<any, MobileMenuState> {
     this.state = {
       activeLink: 0,
       underlinesList: [],
-      isMenuOpen: true,
+      isMenuOpen: false,
       closeClass: ""
     };
   }
@@ -102,6 +102,7 @@ export class MobileMenu extends Component<any, MobileMenuState> {
     window.scrollTo(0, y);
   };
 
+  
   public getVerticalScrollPercentage(elm: any, percentage: number) {
     var p = elm.parentNode
     return p.scrollHeight / 100 * percentage;
@@ -116,19 +117,21 @@ export class MobileMenu extends Component<any, MobileMenuState> {
 
   public openPopUp = () => {
     this.setState({ closeClass: "" });
-    setTimeout(() => {
-      this.setState({ isMenuOpen: true });
-    }, 1500);
+    this.setState({ isMenuOpen: true });
   }
   public render() {
     return (
       <div className={"mobile-menu " + this.state.closeClass}>
         <div className="menu-circle" onClick={this.openPopUp}>
-          <MenuIcon style={{ color: 'white', fontSize: '10vw' }} />
+          <IconButton onClick={this.openPopUp}>
+            <MenuIcon style={{ color: 'white', fontSize: '10vw' }} />
+          </IconButton>
         </div>
         {this.state.isMenuOpen && <div className="menu-popup">
           <div className="pop-up-content">
-            <CloseIcon style={{ fontSize: '8vw', position: 'absolute', top: '3vw', right: '3vw' }} onClick={this.closePopUp} />
+            <IconButton onClick={this.closePopUp} style={{ position: 'absolute', top: '3vw', right: '3vw' }}>
+              <CloseIcon style={{ fontSize: '8vw', color: 'white' }} onClick={this.closePopUp} />
+            </IconButton>
 
             <div className="links">
               <div
