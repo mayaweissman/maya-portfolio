@@ -1,15 +1,16 @@
 import React, { Component } from "react";
 import "./mobile-menu.css";
-import MenuIcon from '@material-ui/icons/Menu';
-import CloseIcon from '@material-ui/icons/Close';
-import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from "@material-ui/icons/Menu";
+import CloseIcon from "@material-ui/icons/Close";
+import IconButton from "@material-ui/core/IconButton";
 import { TransferWithinAStationSharp } from "@material-ui/icons";
 
 interface MobileMenuState {
   activeLink: number;
   underlinesList: number[];
   isMenuOpen: boolean;
-  closeClass: string
+  closeClass: string;
+  meunIconClass: string
 }
 
 export class MobileMenu extends Component<any, MobileMenuState> {
@@ -19,7 +20,8 @@ export class MobileMenu extends Component<any, MobileMenuState> {
       activeLink: 0,
       underlinesList: [],
       isMenuOpen: false,
-      closeClass: ""
+      closeClass: "",
+      meunIconClass: ""
     };
   }
 
@@ -102,108 +104,99 @@ export class MobileMenu extends Component<any, MobileMenuState> {
     window.scrollTo(0, y);
   };
 
-  
   public getVerticalScrollPercentage(elm: any, percentage: number) {
-    var p = elm.parentNode
-    return p.scrollHeight / 100 * percentage;
+    var p = elm.parentNode;
+    return (p.scrollHeight / 100) * percentage;
   }
 
   public closePopUp = () => {
     this.setState({ closeClass: "close-popup" });
+    this.setState({ meunIconClass: "" });
+    document.body.style.overflow = 'scroll';
     setTimeout(() => {
       this.setState({ isMenuOpen: false });
     }, 1500);
-  }
+  };
 
   public openPopUp = () => {
     this.setState({ closeClass: "" });
+    this.setState({ meunIconClass: "open" });
     this.setState({ isMenuOpen: true });
-  }
+    document.body.style.overflow = 'hidden';
+  };
   public render() {
     return (
       <div className={"mobile-menu " + this.state.closeClass}>
-        <div className="menu-circle" onClick={this.openPopUp}>
-          <IconButton onClick={this.openPopUp}>
-            <MenuIcon style={{ color: 'white', fontSize: '10vw' }} />
-          </IconButton>
+        <div className="menu-circle" onClick={this.state.meunIconClass === "" ? this.openPopUp : this.closePopUp}>
+          <div className={"nav-icon4 " + this.state.meunIconClass}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
         </div>
-        {this.state.isMenuOpen && <div className="menu-popup">
-          <div className="pop-up-content">
-            <IconButton onClick={this.closePopUp} style={{ position: 'absolute', top: '3vw', right: '3vw' }}>
-              <CloseIcon style={{ fontSize: '8vw', color: 'white' }} onClick={this.closePopUp} />
-            </IconButton>
+        {this.state.isMenuOpen && (
+          <div className="menu-popup">
+            <div className="pop-up-content">
 
-            <div className="links">
-              <div
-                onMouseEnter={this.fillUnderLine}
-                onMouseLeave={() => this.setState({ underlinesList: [] })}
-                className={
-                  "menu-item item-1 " + this.isActive(1) + this.isUnderLine(1)
-                }
-              >
-                <a onClick={this.changeDisplay(1)}>
-                  About
-          </a>
-              </div>
-              <div
-                onMouseEnter={this.fillUnderLine}
-                onMouseLeave={() => this.setState({ underlinesList: [] })}
-                className={
-                  "menu-item item-2 " + this.isActive(2) + this.isUnderLine(2)
-                }
-              >
-                <a onClick={this.changeDisplay(2)}>
-                  Tech stack
-          </a>
-              </div>
-              <div
-                onMouseEnter={this.fillUnderLine}
-                onMouseLeave={() => this.setState({ underlinesList: [] })}
-                className={
-                  "menu-item item-3 " + this.isActive(3) + this.isUnderLine(3)
-                }
-              >
-                <a onClick={this.changeDisplay(3)}>
-                  Projects
-          </a>
-              </div>
-              <div
-                onMouseEnter={this.fillUnderLine}
-                onMouseLeave={() => this.setState({ underlinesList: [] })}
-                className={
-                  "menu-item item-4 " + this.isActive(4) + this.isUnderLine(4)
-                }
-              >
-                <a onClick={this.changeDisplay(4)}>
-                  My CV
-          </a>
-              </div>
-              <div
-                onMouseEnter={this.fillUnderLine}
-                onMouseLeave={() => this.setState({ underlinesList: [] })}
-                className={
-                  "menu-item item-5 " + this.isActive(5) + this.isUnderLine(5)
-                }
-              >
-                <a onClick={this.changeDisplay(5)}>
-                  Find me
-          </a>
-              </div>
-              <div
-                onMouseEnter={this.fillUnderLine}
-                onMouseLeave={() => this.setState({ underlinesList: [] })}
-                className={
-                  "menu-item item-6 " + this.isActive(6) + this.isUnderLine(6)
-                }
-              >
-                <a onClick={this.changeDisplay(6)}>
-                  Contact me
-          </a>
+              <div className="links">
+                <div
+                  onMouseEnter={this.fillUnderLine}
+                  onMouseLeave={() => this.setState({ underlinesList: [] })}
+                  className={
+                    "menu-item item-1 " + this.isActive(1) + this.isUnderLine(1)
+                  }
+                >
+                  <a onClick={this.changeDisplay(1)}>About</a>
+                </div>
+                <div
+                  onMouseEnter={this.fillUnderLine}
+                  onMouseLeave={() => this.setState({ underlinesList: [] })}
+                  className={
+                    "menu-item item-2 " + this.isActive(2) + this.isUnderLine(2)
+                  }
+                >
+                  <a onClick={this.changeDisplay(2)}>Tech stack</a>
+                </div>
+                <div
+                  onMouseEnter={this.fillUnderLine}
+                  onMouseLeave={() => this.setState({ underlinesList: [] })}
+                  className={
+                    "menu-item item-3 " + this.isActive(3) + this.isUnderLine(3)
+                  }
+                >
+                  <a onClick={this.changeDisplay(3)}>Projects</a>
+                </div>
+                <div
+                  onMouseEnter={this.fillUnderLine}
+                  onMouseLeave={() => this.setState({ underlinesList: [] })}
+                  className={
+                    "menu-item item-4 " + this.isActive(4) + this.isUnderLine(4)
+                  }
+                >
+                  <a onClick={this.changeDisplay(4)}>My CV</a>
+                </div>
+                <div
+                  onMouseEnter={this.fillUnderLine}
+                  onMouseLeave={() => this.setState({ underlinesList: [] })}
+                  className={
+                    "menu-item item-5 " + this.isActive(5) + this.isUnderLine(5)
+                  }
+                >
+                  <a onClick={this.changeDisplay(5)}>Find me</a>
+                </div>
+                <div
+                  onMouseEnter={this.fillUnderLine}
+                  onMouseLeave={() => this.setState({ underlinesList: [] })}
+                  className={
+                    "menu-item item-6 " + this.isActive(6) + this.isUnderLine(6)
+                  }
+                >
+                  <a onClick={this.changeDisplay(6)}>Contact me</a>
+                </div>
               </div>
             </div>
           </div>
-
-        </div>}
+        )}
       </div>
     );
   }
