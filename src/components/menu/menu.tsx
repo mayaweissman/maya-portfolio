@@ -108,7 +108,7 @@ export class Menu extends Component<any, MenuState> {
         break;
 
       case 6:
-        y = this.getVerticalScrollPercentage(document.body, 85);
+        y = this.getVerticalScrollPercentage(document.body, 79);
         break;
 
       default:

@@ -1,14 +1,48 @@
 import React, { Component } from "react";
+import { Unsubscribe } from "redux";
+import { store } from "../../redux/store";
 import "./welcome.css";
 
-export class Welcome extends Component {
+interface WelcomeState {
+  language: string
+}
 
-  public slideDown = ()=>{
-    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-    window.scrollTo(0, this.getVerticalScrollPercentage(document.body,18));
+
+export class Welcome extends Component<any, WelcomeState>{
+
+
+  private unsubscribeStore: Unsubscribe;
+
+  public constructor(props: any) {
+    super(props);
+    this.state = {
+      language: store.getState().language
+    };
+
+    this.unsubscribeStore = store.subscribe(() => {
+      const language = store.getState().language;
+      this.setState({ language });
+    });
   }
 
-  
+  public componentDidMount() {
+    this.unsubscribeStore = store.subscribe(() => {
+      const language = store.getState().language;
+      this.setState({ language });
+    });
+  }
+
+  public componentWillUnmount(): void {
+    this.unsubscribeStore();
+  }
+
+
+  public slideDown = () => {
+    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+    window.scrollTo(0, this.getVerticalScrollPercentage(document.body, 18));
+  }
+
+
   public getVerticalScrollPercentage(elm: any, percentage: number) {
     var p = elm.parentNode
     return p.scrollHeight / 100 * percentage;
@@ -130,7 +164,10 @@ export class Welcome extends Component {
           <span className="letter end-of-senctence"> </span>
         </div>
 
-        <button onClick={this.slideDown} className="explore-more-btn">Explore more</button>
+        <button onClick={this.slideDown} className="explore-more-btn" style={{fontFamily : this.state.language === 'english' ? "Futura" : 'AlmoniNormal'}}>
+
+          {this.state.language === 'english' ? 'Explore more' : 'מידע נוסף'}
+        </button>
       </div>
     );
   }
