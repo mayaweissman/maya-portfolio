@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import { Unsubscribe } from "redux";
 import { getSocial } from "../../data/socials";
 import { SocialModel } from "../../models/socialModel";
+import { store } from "../../redux/store";
 import "./social.css";
 
 interface SocialState {
@@ -11,9 +13,14 @@ interface SocialState {
   isAfterAnimation: boolean;
   isCenterAvailable: boolean;
   isOnMobile: boolean;
+  language: string;
 }
 
 export class Social extends Component<any, SocialState> {
+
+  private unsubscribeStore: Unsubscribe;
+
+
   public constructor(props: any) {
     super(props);
     this.state = {
@@ -33,10 +40,24 @@ export class Social extends Component<any, SocialState> {
       isAfterAnimation: false,
       isCenterAvailable: false,
       isOnMobile: false,
+      language: store.getState().language
     };
+
+    this.unsubscribeStore = store.subscribe(() => {
+      const language = store.getState().language;
+      this.setState({ language });
+    });
   }
 
+
+
   public componentDidMount() {
+
+    this.unsubscribeStore = store.subscribe(() => {
+      const language = store.getState().language;
+      this.setState({ language });
+    });
+
     setTimeout(() => {
       this.setState({ isAfterAnimation: true });
     }, 16000);
@@ -45,6 +66,12 @@ export class Social extends Component<any, SocialState> {
       this.setState({ isOnMobile: true });
     }
   }
+
+  public componentWillUnmount(): void {
+    this.unsubscribeStore();
+  }
+
+
 
   public dragSocial = (social: string) => (e: any) => {
     //Enable function only if animation end
@@ -136,11 +163,12 @@ export class Social extends Component<any, SocialState> {
             console.log(clientX);
             if (centerX && centerY) {
               if (((clientX > centerX && clientX < centerX + 100) || (clientX < centerX && clientX > centerX - 50)) &&
-               (clientY > centerY && clientY < centerY + 100) || (clientY < centerY && clientY > centerY - 50)) {
-                  this.setState({ isCenterAvailable: true });
+                (clientY > centerY && clientY < centerY + 100) || (clientY < centerY && clientY > centerY - 50)) {
+                this.setState({ isCenterAvailable: true });
                 setTimeout(() => {
                   this.setState({ isCenterAvailable: false });
-                }, 2000);              }
+                }, 2000);
+              }
             }
 
             if (elementX && elementY) {
@@ -244,7 +272,9 @@ export class Social extends Component<any, SocialState> {
         id="social"
         style={{ cursor: this.state.isOnDrag ? "grabbing" : "" }}
       >
-        <h1>Find me on social media</h1>
+        <h1>
+          {this.state.language === 'english' ? 'Find me on social media' : 'מצא אותי ברשתות החברתיות'}
+        </h1>
 
         <div className="circle">
           {this.state.socialElements.map((s) => (

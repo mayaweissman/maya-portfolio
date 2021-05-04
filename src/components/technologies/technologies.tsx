@@ -1,15 +1,46 @@
 import React, { Component } from "react";
+import { Unsubscribe } from "redux";
+import { store } from "../../redux/store";
 import "./technologies.css";
 
-export class Technologies extends Component {
+interface TechnologiesState {
+  language: string
+}
 
-    
+export class Technologies extends Component<any, TechnologiesState> {
 
+
+  private unsubscribeStore: Unsubscribe;
+
+  public constructor(props: any) {
+    super(props);
+    this.state = {
+      language: store.getState().language
+    };
+
+    this.unsubscribeStore = store.subscribe(() => {
+      const language = store.getState().language;
+      this.setState({ language });
+    });
+  }
+
+  public componentDidMount() {
+    this.unsubscribeStore = store.subscribe(() => {
+      const language = store.getState().language;
+      this.setState({ language });
+    });
+  }
+
+  public componentWillUnmount(): void {
+    this.unsubscribeStore();
+  }
   public render() {
     return (
       <div className="technologies" id="technologies">
         <div className="technologies-area">
-          <h1>Tech stack</h1>
+          <h1>
+            {this.state.language === 'english' ? 'Tech stack' : 'טכנולוגיות'}
+          </h1>
           <div className="stacks">
             <div className="stack">
               <div className="tech tech-js">
@@ -64,7 +95,9 @@ export class Technologies extends Component {
                 />
                 <span>Bootstrap</span>
               </div>
-              <span className="stack-title">Front end</span>
+              <span className="stack-title">
+                {this.state.language === 'english' ? 'Front end' : 'צד לקוח'}
+              </span>
             </div>
             <div className="stack">
               <div className="tech tech-node">
@@ -110,7 +143,8 @@ export class Technologies extends Component {
                 <img className="tech-icon" src="./assets/images/firebase.png" />
                 <span>Firebase</span>
               </div>
-              <span className="stack-title">Back end</span>
+              <span className="stack-title">          {this.state.language === 'english' ? 'Back end' : 'צד שרת'}
+              </span>
             </div>
           </div>
         </div>

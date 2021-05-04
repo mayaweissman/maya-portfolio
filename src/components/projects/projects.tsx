@@ -6,33 +6,57 @@ import { getProjects } from "../../data/projects";
 import { store } from "../../redux/store";
 import { ActionType } from "../../redux/actionType";
 import AddIcon from '@material-ui/icons/Add';
+import { Unsubscribe } from "redux";
 
 interface ProjectsState {
   allProjects: ProjectModel[];
+  language: string
 }
 
 export class Projects extends Component<any, ProjectsState> {
+
+  private unsubscribeStore: Unsubscribe;
+
   public constructor(props: any) {
     super(props);
     this.state = {
       allProjects: getProjects(),
+      language: store.getState().language
     };
+
+    this.unsubscribeStore = store.subscribe(() => {
+      const language = store.getState().language;
+      this.setState({ language });
+    });
+
+  }
+
+
+  public componentDidMount() {
+    this.unsubscribeStore = store.subscribe(() => {
+      const language = store.getState().language;
+      this.setState({ language });
+    });
+  }
+
+  public componentWillUnmount(): void {
+    this.unsubscribeStore();
   }
 
   public openPopUp = (project: ProjectModel) => (e: any) => {
-    if(project.id !== 3){
+    if (project.id !== 3) {
       store.dispatch({ type: ActionType.getProjectForPopUp, payLoad: project });
       store.dispatch({ type: ActionType.changeDisplayForProjectPopUp });
     }
-    else{
+    else {
       window.open("#", '_blank');
     }
   };
-  
+
   public render() {
     return (
       <div className="projects" id="projects">
-        <h1>Projects</h1>
+        <h1>          {this.state.language === 'english' ? 'Projects' : 'תיק עבודות'}</h1>
         <Carousel
           slides={this.state.allProjects.map((p) => (
             <div className="slide">

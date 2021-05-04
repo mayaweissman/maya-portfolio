@@ -76,7 +76,7 @@
   width: 4vw;
   border-radius: 50%;
   position: absolute;
-  /* animation: RotateUpsideDown 7s both; */
+  animation: RotateUpsideDown 7s both;
 }
 
 .social-circle:hover {

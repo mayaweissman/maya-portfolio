@@ -54,3 +54,86 @@
   transition: all 0.5s ease-in-out;
   cursor: pointer;
 }
+
+
+.toggle {
+  position: absolute;
+  content: "";
+  width: 4.3vw;
+  right: 3vw;
+  border-radius: 1vw;
+  height: 1.6vw;
+  display: flex;
+  align-items: center;
+  color: var(--bg-dark);
+  transition: all 1s ease-in-out;
+  font-family: "Futura";
+}
+
+.eng{
+  background-color: var(--pink);
+  box-shadow: 0 0 14px 3px var(--pink);
+}
+
+.heb{
+  background-color: var(--light-green);
+  box-shadow: 0 0 14px 3px var(--light-green);
+}
+
+.toggle:hover{
+  cursor: pointer;
+}
+
+.eng-span {
+  position: absolute;
+  font-size: 0.65vw;
+  left: 2.1vw;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: FadeInSpan 1s both;
+  animation-delay: 1s;
+}
+
+.heb-span {
+  position: absolute;
+  font-size: 0.65vw;
+  left: 0.9vw;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: FadeInSpan 1s both;
+  animation-delay: 1.1s;
+}
+
+
+@keyframes FadeInSpan{
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+.inside-toggle {
+  content: "";
+  height: 1.9vw;
+  display: flex;
+  width: 1.9vw;
+  border-radius: 50%;
+  justify-content: center;
+  font-size: 0.6vw;
+  align-items: center;
+  position: absolute;
+  text-transform: uppercase;
+  transition: all 1s ease-in-out;
+}
+
+.eng .inside-toggle {
+  background-color: rgb(243 167 209);
+  left: -0.2vw;
+}
+
+.heb .inside-toggle {
+  background-color: #c6f4d7;
+  left: 2.5vw;
+}

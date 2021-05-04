@@ -1,18 +1,42 @@
 import React, { Component } from "react";
+import { Unsubscribe } from "redux";
+import { ActionType } from "../../redux/actionType";
+import { store } from "../../redux/store";
 import "./menu.css";
 
 interface MenuState {
   activeLink: number;
   underlinesList: number[];
+  language: string
 }
 
 export class Menu extends Component<any, MenuState> {
+
+  private unsubscribeStore: Unsubscribe;
+
   public constructor(props: any) {
     super(props);
     this.state = {
       activeLink: 0,
       underlinesList: [],
+      language: store.getState().language
     };
+
+    this.unsubscribeStore = store.subscribe(() => {
+      const language = store.getState().language;
+      this.setState({ language });
+    });
+  }
+
+  public componentDidMount() {
+    this.unsubscribeStore = store.subscribe(() => {
+      const language = store.getState().language;
+      this.setState({ language });
+    });
+  }
+
+  public componentWillUnmount(): void {
+    this.unsubscribeStore();
   }
 
   public isActive = (index: number) => {
@@ -100,16 +124,21 @@ export class Menu extends Component<any, MenuState> {
 
   public render() {
     return (
-      <div className="menu">
+      <div className="menu" style={{flexDirection: this.state.language === 'english' ? 'row' :'row-reverse'}}>
+
+        <div className={this.state.language === 'english' ? "toggle eng" : "toggle heb"} onClick={() => store.dispatch({ type: ActionType.changeLanguage })}>
+          <div className="inside-toggle"></div>
+          {this.state.language === 'english' && <span className="eng-span">Eng</span>}
+          {this.state.language !== 'english' && <span className="heb-span"> Heb</span>}
+        </div>
         <div
-          onMouseEnter={this.fillUnderLine}
           onMouseLeave={() => this.setState({ underlinesList: [] })}
           className={
             "menu-item item-1 " + this.isActive(1) + this.isUnderLine(1)
           }
         >
           <a onClick={this.changeDisplay(1)}>
-            About
+            {this.state.language === 'english' ? 'About' : 'אודות'}
           </a>
         </div>
         <div
@@ -120,7 +149,8 @@ export class Menu extends Component<any, MenuState> {
           }
         >
           <a onClick={this.changeDisplay(2)}>
-            Tech stack
+          {this.state.language === 'english' ? 'Tech stack' : 'טכנולוגיות'}
+
           </a>
         </div>
         <div
@@ -131,7 +161,8 @@ export class Menu extends Component<any, MenuState> {
           }
         >
           <a onClick={this.changeDisplay(3)}>
-            Projects
+          {this.state.language === 'english' ? 'Projects' : 'תיק עבודות'}
+
           </a>
         </div>
         <div
@@ -142,7 +173,8 @@ export class Menu extends Component<any, MenuState> {
           }
         >
           <a onClick={this.changeDisplay(4)}>
-            My CV
+          {this.state.language === 'english' ? 'My Cv' : 'קורות חיים'}
+
           </a>
         </div>
         <div
@@ -153,7 +185,8 @@ export class Menu extends Component<any, MenuState> {
           }
         >
           <a onClick={this.changeDisplay(5)}>
-            Find me
+          {this.state.language === 'english' ? 'Find me' : 'ברשתות החברתיות'}
+
           </a>
         </div>
         <div
@@ -164,7 +197,8 @@ export class Menu extends Component<any, MenuState> {
           }
         >
           <a onClick={this.changeDisplay(6)}>
-            Contact me
+          {this.state.language === 'english' ? 'Contact me' : 'יצירת קשר'}
+
           </a>
         </div>
       </div>

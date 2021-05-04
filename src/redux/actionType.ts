@@ -3,5 +3,6 @@ changeDisplayForAboutPopUp,
 changeDisplayForProjectPopUp,
 getContentForAboutPopUp,
 getProjectForPopUp,
+changeLanguage
     
 }

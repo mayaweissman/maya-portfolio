@@ -19,7 +19,8 @@ interface LayoutState {
   display: boolean,
   diplayForProjectPopUp: boolean,
   scroll: number,
-  isOnMobile: boolean
+  isOnMobile: boolean,
+  language: string
 }
 
 export class Layout extends Component<any, LayoutState>{
@@ -32,7 +33,8 @@ export class Layout extends Component<any, LayoutState>{
       display: store.getState().isAboutPopUpShow,
       diplayForProjectPopUp: store.getState().isProjectPopUpShow,
       scroll: 0,
-      isOnMobile: false
+      isOnMobile: false,
+      language: store.getState().language
     }
 
     this.unsubscribeStore = store.subscribe(() => {
@@ -40,6 +42,8 @@ export class Layout extends Component<any, LayoutState>{
       this.setState({ display });
       const diplayForProjectPopUp = store.getState().isProjectPopUpShow;
       this.setState({ diplayForProjectPopUp });
+      const language = store.getState().language;
+      this.setState({ language });
     })
   }
 
@@ -49,6 +53,8 @@ export class Layout extends Component<any, LayoutState>{
       this.setState({ display });
       const diplayForProjectPopUp = store.getState().isProjectPopUpShow;
       this.setState({ diplayForProjectPopUp });
+      const language = store.getState().language;
+      this.setState({ language });
     });
 
     if (window.screen.width < 600) {
@@ -75,7 +81,7 @@ export class Layout extends Component<any, LayoutState>{
 
   public render() {
     return (
-      <div className="layout">
+      <div className="layout" style={{ fontFamily: this.state.language === 'english' ? "Futura" : "AlmoniNormal" }}>
         <header>
           {!this.state.isOnMobile && <Menu />}
           {this.state.isOnMobile && <MobileMenu />}

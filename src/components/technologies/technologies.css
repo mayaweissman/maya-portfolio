@@ -239,6 +239,7 @@
 .tech > span {
   transform: translateX(-1.5vw);
   transition: all .8s ease-in-out;
+  font-family: 'Futura';
 }
 
 .tech:hover > span {

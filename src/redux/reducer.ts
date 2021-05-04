@@ -25,6 +25,15 @@ export function reducer(oldAppState: AppState, action: Action): AppState {
       }
       break;
 
+    case ActionType.changeLanguage:
+      if (newAppState.language === 'english') {
+        newAppState.language = 'hebrew';
+      }
+      else {
+        newAppState.language = 'english';
+      }
+      break;
+
     case ActionType.getContentForAboutPopUp:
       newAppState.contentForAboutPopUp = action.payLoad;
       break;
@@ -33,6 +42,7 @@ export function reducer(oldAppState: AppState, action: Action): AppState {
       console.log(action.payLoad);
       newAppState.projectForPopUP = action.payLoad;
       break;
+    
 
     default:
       break;

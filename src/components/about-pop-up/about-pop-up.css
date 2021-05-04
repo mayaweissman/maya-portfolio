@@ -109,7 +109,6 @@
 }
 
 .content-area{
-    text-align: left;
     padding: 1vw;
     font-size: 1.1vw;
 }
@@ -151,7 +150,6 @@
 
 
 .mobile .content-area {
-    text-align: left;
     padding: 1vw;
     font-size: 3.3vw;
 }
