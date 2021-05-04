@@ -70,7 +70,7 @@
 .menu-popup {
   content: "";
   position: fixed;
-  height: 140vw;
+  height: 132vw;
   width: 80vw;
   z-index: 9999;
   background-color: transparent;
@@ -86,7 +86,7 @@
   width: 50%;
   position: absolute;
   z-index: -1;
-  background-color: #000000d1;
+  background-color: #000000e3;
   animation: grow 1.5s both;
   right: 40vw;
 }
@@ -97,7 +97,7 @@
   width: 50%;
   position: absolute;
   z-index: -1;
-  background-color: #000000d1;
+  background-color: #000000e3;
   animation: grow 1.5s both;
   left: 40vw;
 }
@@ -121,7 +121,7 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  top: 0vw;
+  top: 10vw;
 }
 
 .mobile .menu-item {
@@ -288,4 +288,63 @@
   transform: rotate(-45deg);
   top: 8.5vw;
   left: 1.5vw;
+}
+
+
+.mobile .toggle {
+  position: absolute;
+  content: "";
+  width: 19vw;
+  top: 8vw;
+  right: 50%;
+  transform: translateX(50%);
+  border-radius: 5vw;
+  height: 6vw;
+  display: flex;
+  align-items: center;
+  color: var(--bg-dark);
+  transition: all 1s ease-in-out;
+  font-family: "Futura";
+}
+
+.mobile .inside-toggle {
+  content: "";
+  height: 7vw;
+  display: flex;
+  width: 7vw;
+  border-radius: 50%;
+  justify-content: center;
+  font-size: 0.6vw;
+  align-items: center;
+  position: absolute;
+  text-transform: uppercase;
+  transition: all 1s ease-in-out;
+}
+
+
+.mobile .eng-span {
+  position: absolute;
+  font-size: 3vw;
+  left: 8.2vw;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: FadeInSpan 1s both;
+  animation-delay: 1s;
+}
+
+
+.mobile .heb .inside-toggle {
+  background-color: #c6f4d7;
+  left: 13vw;
+}
+
+
+.mobile .heb-span {
+  position: absolute;
+  font-size: 3vw;
+  left: 5vw;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: FadeInSpan 1s both;
+  animation-delay: 1.1s;
 }

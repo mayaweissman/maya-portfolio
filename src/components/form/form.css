@@ -300,7 +300,7 @@ input:-webkit-autofill:active {
 .mobile .inside-form {
   position: absolute;
   width: 80vw;
-  height: 145vw;
+  height: 155vw;
   display: flex;
   background-color: var(--bg-dark);
   flex-direction: column;
@@ -340,6 +340,7 @@ input:-webkit-autofill:active {
 .mobile input {
   background-color: transparent;
   border: 0;
+  border-radius: 0;
   outline: none;
   border-bottom: 2px solid var(--light-green);
   color: var(--off-white);
@@ -377,6 +378,7 @@ input:-webkit-autofill:active {
 .mobile textarea {
   background-color: transparent;
   border: 0;
+  border-radius: 0;
   outline: none;
   border-bottom: 2px solid var(--light-green);
   color: var(--off-white);
@@ -414,7 +416,7 @@ input:-webkit-autofill:active {
 
 .mobile .second-section > .rib {
   position: relative;
-  bottom: 1.1vw;
+  bottom: 1.4vw;
 }
 
 .mobile .filled-rib {
@@ -479,7 +481,7 @@ input:-webkit-autofill:active {
 
 .mobile .error {
   position: absolute;
-  top: 6.8vw;
+  top: 7.2vw;
   right: 0;
   font-size: 3vw;
   color: var(--red);

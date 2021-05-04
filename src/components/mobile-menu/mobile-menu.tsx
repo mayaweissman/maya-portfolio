@@ -3,16 +3,22 @@ import "./mobile-menu.css";
 import MenuIcon from "@material-ui/icons/Menu";
 import CloseIcon from "@material-ui/icons/Close";
 import { TransferWithinAStationSharp } from "@material-ui/icons";
+import { store } from "../../redux/store";
+import { Unsubscribe } from "redux";
+import { ActionType } from "../../redux/actionType";
 
 interface MobileMenuState {
   activeLink: number;
   underlinesList: number[];
   isMenuOpen: boolean;
   closeClass: string;
-  meunIconClass: string
+  meunIconClass: string;
+  language: string;
 }
 
 export class MobileMenu extends Component<any, MobileMenuState> {
+  private unsubscribeStore: Unsubscribe;
+
   public constructor(props: any) {
     super(props);
     this.state = {
@@ -20,8 +26,25 @@ export class MobileMenu extends Component<any, MobileMenuState> {
       underlinesList: [],
       isMenuOpen: false,
       closeClass: "",
-      meunIconClass: ""
+      meunIconClass: "",
+      language: store.getState().language,
     };
+
+    this.unsubscribeStore = store.subscribe(() => {
+      const language = store.getState().language;
+      this.setState({ language });
+    });
+  }
+
+  public componentDidMount() {
+    this.unsubscribeStore = store.subscribe(() => {
+      const language = store.getState().language;
+      this.setState({ language });
+    });
+  }
+
+  public componentWillUnmount(): void {
+    this.unsubscribeStore();
   }
 
   public isActive = (index: number) => {
@@ -111,7 +134,7 @@ export class MobileMenu extends Component<any, MobileMenuState> {
   public closePopUp = () => {
     this.setState({ closeClass: "close-popup" });
     this.setState({ meunIconClass: "" });
-    document.body.style.overflow = 'scroll';
+    document.body.style.overflow = "scroll";
     setTimeout(() => {
       this.setState({ isMenuOpen: false });
     }, 1500);
@@ -121,12 +144,17 @@ export class MobileMenu extends Component<any, MobileMenuState> {
     this.setState({ closeClass: "" });
     this.setState({ meunIconClass: "open" });
     this.setState({ isMenuOpen: true });
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
   };
   public render() {
     return (
       <div className={"mobile-menu " + this.state.closeClass}>
-        <div className="menu-circle" onClick={this.state.meunIconClass === "" ? this.openPopUp : this.closePopUp}>
+        <div
+          className="menu-circle"
+          onClick={
+            this.state.meunIconClass === "" ? this.openPopUp : this.closePopUp
+          }
+        >
           <div className={"nav-icon4 " + this.state.meunIconClass}>
             <span></span>
             <span></span>
@@ -135,8 +163,26 @@ export class MobileMenu extends Component<any, MobileMenuState> {
         </div>
         {this.state.isMenuOpen && (
           <div className="menu-popup">
+
             <div className="pop-up-content">
 
+            <div
+              className={
+                this.state.language === "english" ? "toggle eng" : "toggle heb"
+              }
+              onTouchStart={() =>
+                store.dispatch({ type: ActionType.changeLanguage })
+              }
+            >
+              <div className="inside-toggle"></div>
+              {this.state.language === "english" && (
+                <span className="eng-span">Eng</span>
+              )}
+              {this.state.language !== "english" && (
+                <span className="heb-span"> Heb</span>
+              )}
+            </div>
+            
               <div className="links">
                 <div
                   onMouseEnter={this.fillUnderLine}
@@ -145,7 +191,9 @@ export class MobileMenu extends Component<any, MobileMenuState> {
                     "menu-item item-1 " + this.isActive(1) + this.isUnderLine(1)
                   }
                 >
-                  <a onClick={this.changeDisplay(1)}>About</a>
+                  <a onClick={this.changeDisplay(1)}>
+                    {this.state.language === "english" ? "About" : "אודות"}
+                  </a>
                 </div>
                 <div
                   onMouseEnter={this.fillUnderLine}
@@ -154,7 +202,11 @@ export class MobileMenu extends Component<any, MobileMenuState> {
                     "menu-item item-2 " + this.isActive(2) + this.isUnderLine(2)
                   }
                 >
-                  <a onClick={this.changeDisplay(2)}>Tech stack</a>
+                  <a onClick={this.changeDisplay(2)}>
+                    {this.state.language === "english"
+                      ? "Tech stack"
+                      : "טכנולוגיות"}
+                  </a>
                 </div>
                 <div
                   onMouseEnter={this.fillUnderLine}
@@ -163,7 +215,11 @@ export class MobileMenu extends Component<any, MobileMenuState> {
                     "menu-item item-3 " + this.isActive(3) + this.isUnderLine(3)
                   }
                 >
-                  <a onClick={this.changeDisplay(3)}>Projects</a>
+                  <a onClick={this.changeDisplay(3)}>
+                    {this.state.language === "english"
+                      ? "Projects"
+                      : "תיק עבודות"}
+                  </a>
                 </div>
                 <div
                   onMouseEnter={this.fillUnderLine}
@@ -172,7 +228,9 @@ export class MobileMenu extends Component<any, MobileMenuState> {
                     "menu-item item-4 " + this.isActive(4) + this.isUnderLine(4)
                   }
                 >
-                  <a onClick={this.changeDisplay(4)}>My CV</a>
+                  <a onClick={this.changeDisplay(4)}>
+                    {this.state.language === "english" ? "My Cv" : "קורות חיים"}
+                  </a>
                 </div>
                 <div
                   onMouseEnter={this.fillUnderLine}
@@ -181,7 +239,11 @@ export class MobileMenu extends Component<any, MobileMenuState> {
                     "menu-item item-5 " + this.isActive(5) + this.isUnderLine(5)
                   }
                 >
-                  <a onClick={this.changeDisplay(5)}>Find me</a>
+                  <a onClick={this.changeDisplay(5)}>
+                    {this.state.language === "english"
+                      ? "Find me"
+                      : "ברשתות החברתיות"}
+                  </a>
                 </div>
                 <div
                   onMouseEnter={this.fillUnderLine}
@@ -190,7 +252,11 @@ export class MobileMenu extends Component<any, MobileMenuState> {
                     "menu-item item-6 " + this.isActive(6) + this.isUnderLine(6)
                   }
                 >
-                  <a onClick={this.changeDisplay(6)}>Contact me</a>
+                  <a onClick={this.changeDisplay(6)}>
+                    {this.state.language === "english"
+                      ? "Contact me"
+                      : "יצירת קשר"}
+                  </a>
                 </div>
               </div>
             </div>

@@ -76,8 +76,8 @@
 }
 
 .heb{
-  background-color: var(--light-green);
-  box-shadow: 0 0 14px 3px var(--light-green);
+  background-color: var(--blue);
+  box-shadow: 0 0 14px 3px var(--blue);
 }
 
 .toggle:hover{
@@ -134,6 +134,6 @@
 }
 
 .heb .inside-toggle {
-  background-color: #c6f4d7;
+  background-color: #bce9f6;
   left: 2.5vw;
 }

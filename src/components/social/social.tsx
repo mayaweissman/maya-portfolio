@@ -159,8 +159,6 @@ export class Social extends Component<any, SocialState> {
             const centerY = document
               .querySelector(`.handle-social`)
               ?.getBoundingClientRect().y;
-            console.log(centerX);
-            console.log(clientX);
             if (centerX && centerY) {
               if (((clientX > centerX && clientX < centerX + 100) || (clientX < centerX && clientX > centerX - 50)) &&
                 (clientY > centerY && clientY < centerY + 100) || (clientY < centerY && clientY > centerY - 50)) {
@@ -214,6 +212,7 @@ export class Social extends Component<any, SocialState> {
   };
 
   public touchEnd = (social: string) => (event: any) => {
+    document.body.style.overflow = "scroll";
 
     const positions = [...this.state.positions];
     const index = positions.findIndex((p) => p.name === social);
@@ -231,7 +230,6 @@ export class Social extends Component<any, SocialState> {
         }
         this.setState({ positions: updatedPositions });
         setTimeout(() => {
-          console.log('dd');
           window.open(this.state.elementNameToCenter.url, "_blank");
         }, 1000);
       }
