@@ -97,15 +97,12 @@ export class Social extends Component<any, SocialState> {
                     p.top = -4;
                   }
                   this.setState({ positions: updatedPositions });
-                  setTimeout(() => {
-                    window.open(this.state.elementNameToCenter.url, "_blank");
-                  }, 1000);
                 }
               } else {
                 positions[index].left = -4;
                 positions[index].top = -4;
                 this.setState({ positions });
-                document.removeEventListener("mousemove", () => {}, true);
+                document.removeEventListener("mousemove", () => { }, true);
                 this.setState({ isOnDrag: false });
                 return;
               }
@@ -113,76 +110,125 @@ export class Social extends Component<any, SocialState> {
           }
         }
       });
-      document.addEventListener("touchmove", (e) => {
-        document.body.style.overflow = "hidden";
-        console.log('move');
-        const isSocialUsedForDrag = this.state.socialElements.find(
-          (s) => s.name === social
-        )?.isOnDrag;
-        if (this.state.isOnDrag && isSocialUsedForDrag) {
-          const clientX = e.touches[0].clientX;
-          const clientY = e.touches[0].clientY;
-          const elementX = document
-            .querySelector(`.${social}`)
-            ?.getBoundingClientRect().x;
-          const elementY = document
-            .querySelector(`.${social}`)
-            ?.getBoundingClientRect().y;
-          if (elementX && elementY) {
-            const x = clientX - elementX - 25;
-            const y = clientY - elementY - 25;
-            const positions = [...this.state.positions];
-            const index = positions.findIndex((p) => p.name === social);
-            positions[index].left = x;
-            positions[index].top = y;
-            this.setState({ positions });
+      if (window.screen.width < 600) {
+        document.addEventListener("touchmove", (e) => {
+          document.body.style.overflow = "hidden";
+          const isSocialUsedForDrag = this.state.socialElements.find(
+            (s) => s.name === social
+          )?.isOnDrag;
+          if (this.state.isOnDrag && isSocialUsedForDrag) {
+            const clientX = e.touches[0].clientX;
+            const clientY = e.touches[0].clientY;
+            const elementX = document
+              .querySelector(`.${social}`)
+              ?.getBoundingClientRect().x;
+            const elementY = document
+              .querySelector(`.${social}`)
+              ?.getBoundingClientRect().y;
 
-            document.addEventListener("click", (e) => {
-              if (this.state.isCenterAvailable) {
-                console.log('click');
-                const elementNameToCenter = this.state.socialElements.find(
-                  (s) => s.name === social
-                );
-                if (elementNameToCenter) {
-                  this.setState({ elementNameToCenter });
-                  this.setState({ isOnDrag: false });
-                  const updatedPositions = [...this.state.positions];
-                  for (const p of updatedPositions) {
-                    p.left = -4;
-                    p.top = -4;
+            const centerX = document
+              .querySelector(`.handle-social`)
+              ?.getBoundingClientRect().x;
+            const centerY = document
+              .querySelector(`.handle-social`)
+              ?.getBoundingClientRect().y;
+            console.log(centerX);
+            console.log(clientX);
+            if (centerX && centerY) {
+              if (((clientX > centerX && clientX < centerX + 100) || (clientX < centerX && clientX > centerX - 50)) &&
+               (clientY > centerY && clientY < centerY + 100) || (clientY < centerY && clientY > centerY - 50)) {
+                  this.setState({ isCenterAvailable: true });
+                setTimeout(() => {
+                  this.setState({ isCenterAvailable: false });
+                }, 2000);              }
+            }
+
+            if (elementX && elementY) {
+              const x = clientX - elementX - 25;
+
+              const y = clientY - elementY - 25;
+              const positions = [...this.state.positions];
+              const index = positions.findIndex((p) => p.name === social);
+              positions[index].left = x;
+              positions[index].top = y;
+              this.setState({ positions });
+
+              document.addEventListener("click", (e) => {
+                if (this.state.isCenterAvailable) {
+                  const elementNameToCenter = this.state.socialElements.find(
+                    (s) => s.name === social
+                  );
+                  if (elementNameToCenter) {
+                    this.setState({ elementNameToCenter });
+                    this.setState({ isOnDrag: false });
+                    const updatedPositions = [...this.state.positions];
+                    for (const p of updatedPositions) {
+                      p.left = -4;
+                      p.top = -4;
+                    }
+                    this.setState({ positions: updatedPositions });
                   }
-                  this.setState({ positions: updatedPositions });
-                  setTimeout(() => {
-                    window.open(this.state.elementNameToCenter.url, "_blank");
-                  }, 1000);
+                } else {
+                  positions[index].left = -4;
+                  positions[index].top = -4;
+                  this.setState({ positions });
+                  document.removeEventListener("mousemove", () => { }, true);
+                  this.setState({ isOnDrag: false });
+                  return;
                 }
-              } else {
-                positions[index].left = -4;
-                positions[index].top = -4;
-                this.setState({ positions });
-                document.removeEventListener("mousemove", () => {}, true);
-                this.setState({ isOnDrag: false });
-                return;
-              }
-            });
+              });
+
+            }
           }
-        }
-      });
+        });
+      }
     }
   };
 
-  public touchEnd = ()=>{
-   //Need to create two new functions for start and end draggign
+  public touchEnd = (social: string) => (event: any) => {
+
+    const positions = [...this.state.positions];
+    const index = positions.findIndex((p) => p.name === social);
+    if (this.state.isCenterAvailable) {
+      const elementNameToCenter = this.state.socialElements.find(
+        (s) => s.name === social
+      );
+      if (elementNameToCenter) {
+        this.setState({ elementNameToCenter });
+        this.setState({ isOnDrag: false });
+        const updatedPositions = [...this.state.positions];
+        for (const p of updatedPositions) {
+          p.left = -4;
+          p.top = -4;
+        }
+        this.setState({ positions: updatedPositions });
+        setTimeout(() => {
+          console.log('dd');
+          window.open(this.state.elementNameToCenter.url, "_blank");
+        }, 1000);
+      }
+    } else {
+
+      positions[index].left = -4;
+      positions[index].top = -4;
+      this.setState({ positions });
+      document.removeEventListener("touchmove", () => { }, true);
+      this.setState({ isOnDrag: false });
+      return;
+    }
   }
 
   public openSocial = () => {
     if (this.state.isOnDrag) {
       this.setState({ isCenterAvailable: true });
-    }
-    setTimeout(() => {
-      this.setState({ isCenterAvailable: false });
-    }, 2000);
-  };
+      setTimeout(() => {
+        window.open(this.state.elementNameToCenter.url, "_blank");
+      }, 1000);
+      setTimeout(() => {
+        this.setState({ isCenterAvailable: false });
+      }, 2000);
+    };
+  }
 
   public openByURl = () => {
     if (!this.state.isOnDrag) {
@@ -208,17 +254,14 @@ export class Social extends Component<any, SocialState> {
                   <div
                     onDragStart={this.dragSocial(s.name as string)}
                     onTouchStart={this.dragSocial(s.name as string)}
-                    onTouchEnd={this.touchEnd}
-                    onClick={this.dragSocial(s.name as string)}
+                    onTouchEnd={this.touchEnd(s.name as string)}
                     className="social-circle"
                     style={{
-                      left: `${
-                        this.state.positions.find((p) => p.name === s.name)
-                          ?.left
-                      }px`,
-                      top: `${
-                        this.state.positions.find((p) => p.name === s.name)?.top
-                      }px`,
+                      left: `${this.state.positions.find((p) => p.name === s.name)
+                        ?.left
+                        }px`,
+                      top: `${this.state.positions.find((p) => p.name === s.name)?.top
+                        }px`,
                     }}
                   >
                     <img src={`./assets/images/${s.imgSrc}`} />

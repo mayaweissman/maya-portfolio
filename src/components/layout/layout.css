@@ -48,6 +48,16 @@
     opacity: 1;
   }
 }
+@-webkit-keyframes FadeUp {
+  0% {
+    transform: translateY(10vw);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 
 .mobile .layout {
   height: 1030vw;
@@ -74,4 +84,28 @@
 
 .mobile .only-desktop{
   display: none;
+}
+
+
+footer {
+  position: absolute;
+  width: 100%;
+  height: 10vw;
+  top: 270vw;
+  text-align: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mobile footer {
+  position: absolute;
+  width: 100%;
+  height: 90vw;
+  top: 1000vw;
+  margin-top: -16vw;
+  text-align: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

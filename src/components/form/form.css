@@ -361,7 +361,7 @@ input:-webkit-autofill:active {
 .mobile .inside-form > h1 {
   color: var(--off-white);
   text-transform: uppercase;
-  font-size: 7vw;
+  font-size: 6vw;
   margin: 2vw;
 }
 
@@ -526,4 +526,15 @@ input:-webkit-autofill:active {
 
 .middle-of-send-circle > span:hover{
   cursor: pointer;
+}
+
+.mobile .thanks-gif {
+  position: relative;
+  margin: 10vw;
+  width: 66vw;
+}
+
+
+.mobile .ilegal-form .filled-rib {
+  background-color: var(--light-green);
 }

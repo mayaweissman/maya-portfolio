@@ -48,7 +48,39 @@
         opacity: 1;
     }
 }
+
+@-webkit-keyframes FadeInPopUp {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
 @keyframes Bounce {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale(.3) translateX(50%);
+        transform: scale(.3) translateX(50%);
+      }
+    
+      50% {
+        opacity: 1;
+        -webkit-transform: scale(1.05) translateX(50%);
+        transform: scale(1.05) translateX(50%);
+      }
+    
+      70% {
+        -webkit-transform: scale(.9) translateX(50%);
+        transform: scale(.9) translateX(50%);
+      }
+    
+      100% {
+        -webkit-transform: scale(1) translateX(50%);
+        transform: scale(1) translateX(50%);
+      }
+}
+@-webkit-keyframes Bounce {
     0% {
         opacity: 0;
         -webkit-transform: scale(.3) translateX(50%);

@@ -219,6 +219,16 @@
 		transform: translateY(0);
 	}
 }
+@-webkit-keyframes FallingDown{
+	0%{
+		opacity: 0;
+		transform: translateY(-20vw);
+	}
+	100%{
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
 
 .tech-icon{
   width: 1.5vw;
@@ -241,6 +251,15 @@ transition: all .5s ease-in-out;
 }
 
 @keyframes FadeInTechIcon{
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes FadeInTechIcon{
   from{
     opacity: 0;
   }

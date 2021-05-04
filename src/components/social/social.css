@@ -33,7 +33,30 @@
   }
 }
 
+@-webkit-keyframes Rotate {
+  0% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
+
 @keyframes RotateUpsideDown {
+  0% {
+    transform: translateX(50%) rotate(0);
+  }
+  50% {
+    transform: translateX(50%) rotate(-360deg);
+  }
+  100% {
+    transform: translateX(50%) rotate(0);
+  }
+}
+@-webkit-keyframes RotateUpsideDown {
   0% {
     transform: translateX(50%) rotate(0);
   }
@@ -53,7 +76,7 @@
   width: 4vw;
   border-radius: 50%;
   position: absolute;
-  animation: RotateUpsideDown 7s both;
+  /* animation: RotateUpsideDown 7s both; */
 }
 
 .social-circle:hover {
@@ -74,6 +97,15 @@
 }
 
 @keyframes Scale {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@-webkit-keyframes Scale {
   from {
     transform: scale(0);
   }
@@ -185,6 +217,14 @@
     opacity: 1;
   }
 }
+@-webkit-keyframes FadeInMainSocial {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 
 .shaddow.active {
   display: block;
@@ -200,6 +240,37 @@
 }
 
 @keyframes MoveAround {
+  0% {
+    transform: translateX(0) translateY(0);
+    opacity: 1;
+  }
+  15% {
+    transform: translateX(10vw) translateY(-3vw);
+    opacity: 1;
+  }
+  35% {
+    transform: translateX(10vw) translateY(-3vw);
+    opacity: 1;
+  }
+  55% {
+    transform: translateX(0) translateY(0);
+    opacity: 1;
+  }
+  75% {
+    transform: translateX(-5vw) translateY(10vw);
+    opacity: 1;
+  }
+  90% {
+    transform: translateX(0) translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0) translateY(0);
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes MoveAround {
   0% {
     transform: translateX(0) translateY(0);
     opacity: 1;
@@ -395,6 +466,36 @@
 }
 
 @keyframes MoveAroundForMobile {
+  0% {
+    transform: translateX(0) translateY(0);
+    opacity: 1;
+  }
+  15% {
+    transform: translateX(36vw) translateY(-11vw);
+    opacity: 1;
+  }
+  35% {
+    transform: translateX(36vw) translateY(-11vw);
+    opacity: 1;
+  }
+  55% {
+    transform: translateX(0) translateY(0);
+    opacity: 1;
+  }
+  75% {
+    transform: translateX(-15vw) translateY(39vw);
+    opacity: 1;
+  }
+  90% {
+    transform: translateX(0) translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0) translateY(0);
+    opacity: 0;
+  }
+}
+@-webkit-keyframes MoveAroundForMobile {
   0% {
     transform: translateX(0) translateY(0);
     opacity: 1;

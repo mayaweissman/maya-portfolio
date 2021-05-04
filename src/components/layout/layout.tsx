@@ -4,6 +4,7 @@ import { store } from "../../redux/store";
 import { AboutPopUp } from "../about-pop-up/about-pop-up";
 import { About } from "../about/about";
 import { Cv } from "../cv/cv";
+import { Footer } from "../footer/footer";
 import { Form } from "../form/form";
 import { Menu } from "../menu/menu";
 import { MobileMenu } from "../mobile-menu/mobile-menu";
@@ -76,9 +77,9 @@ export class Layout extends Component<any, LayoutState>{
     return (
       <div className="layout">
         <header>
-          {!this.state.isOnMobile && <Menu />}    
-          {this.state.isOnMobile && <MobileMenu />}    
-              </header>
+          {!this.state.isOnMobile && <Menu />}
+          {this.state.isOnMobile && <MobileMenu />}
+        </header>
         <div className="welcome-area">
           <Welcome />
         </div>
@@ -106,6 +107,9 @@ export class Layout extends Component<any, LayoutState>{
         {this.state.display && <AboutPopUp />}
         {this.state.diplayForProjectPopUp && <ProjectPopUp />}
 
+        <footer>
+          <Footer />
+        </footer>
       </div>
     );
   }
