@@ -75,7 +75,7 @@ export class Social extends Component<any, SocialState> {
 
   public dragSocial = (social: string) => (e: any) => {
     //Enable function only if animation end
-    if (!this.state.isAfterAnimation) {
+    if (this.state.isAfterAnimation) {
       this.setState({ isOnDrag: true });
       this.setState({ isCenterAvailable: false });
       //Restart all drggaing for socials ojects
@@ -140,6 +140,9 @@ export class Social extends Component<any, SocialState> {
       if (window.screen.width < 600) {
         document.addEventListener("touchmove", (e) => {
           document.body.style.overflow = "hidden";
+          setTimeout(() => {
+            document.body.style.overflow = "scroll";
+          }, 3000);
           const isSocialUsedForDrag = this.state.socialElements.find(
             (s) => s.name === social
           )?.isOnDrag;
@@ -171,38 +174,12 @@ export class Social extends Component<any, SocialState> {
 
             if (elementX && elementY) {
               const x = clientX - elementX - 25;
-
               const y = clientY - elementY - 25;
               const positions = [...this.state.positions];
               const index = positions.findIndex((p) => p.name === social);
               positions[index].left = x;
               positions[index].top = y;
               this.setState({ positions });
-
-              document.addEventListener("click", (e) => {
-                if (this.state.isCenterAvailable) {
-                  const elementNameToCenter = this.state.socialElements.find(
-                    (s) => s.name === social
-                  );
-                  if (elementNameToCenter) {
-                    this.setState({ elementNameToCenter });
-                    this.setState({ isOnDrag: false });
-                    const updatedPositions = [...this.state.positions];
-                    for (const p of updatedPositions) {
-                      p.left = -4;
-                      p.top = -4;
-                    }
-                    this.setState({ positions: updatedPositions });
-                  }
-                } else {
-                  positions[index].left = -4;
-                  positions[index].top = -4;
-                  this.setState({ positions });
-                  document.removeEventListener("mousemove", () => { }, true);
-                  this.setState({ isOnDrag: false });
-                  return;
-                }
-              });
 
             }
           }
@@ -230,7 +207,7 @@ export class Social extends Component<any, SocialState> {
         }
         this.setState({ positions: updatedPositions });
         setTimeout(() => {
-          window.open(this.state.elementNameToCenter.url, "_blank");
+            window.location.href = this.state.elementNameToCenter.url as string;
         }, 1000);
       }
     } else {
@@ -257,7 +234,7 @@ export class Social extends Component<any, SocialState> {
   }
 
   public openByURl = () => {
-    if (!this.state.isOnDrag) {
+    if (!this.state.isOnDrag && this.state.elementNameToCenter.url) {
       const url = this.state.elementNameToCenter.url;
       window.open(url, "_blank");
     }

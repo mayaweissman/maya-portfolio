@@ -468,7 +468,7 @@
 @keyframes MoveAroundForMobile {
   0% {
     transform: translateX(0) translateY(0);
-    opacity: 1;
+    opacity: 0;
   }
   15% {
     transform: translateX(36vw) translateY(-11vw);
@@ -498,7 +498,7 @@
 @-webkit-keyframes MoveAroundForMobile {
   0% {
     transform: translateX(0) translateY(0);
-    opacity: 1;
+    opacity: 0;
   }
   15% {
     transform: translateX(36vw) translateY(-11vw);

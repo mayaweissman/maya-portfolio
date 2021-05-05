@@ -244,8 +244,10 @@ export class Form extends Component<any, FormState> {
         {this.state.isFormSent && (
           <div className="inside-form">
             <img className="thanks-gif" src="./assets/images/giphy.gif" />
-            <h1>I promise to reply to your message <br />
-            as soon as possible!</h1>
+           {this.state.language === 'english' && <h1>I promise to reply your message <br />
+            as soon as possible!</h1>}
+           {this.state.language !== 'english' && <h1>אני מבטיחה לחזור לפנייתך <br />
+            !בהקדם האפשרי</h1>}
           </div>
         )}
         {!this.state.isFormSent && (
@@ -258,9 +260,10 @@ export class Form extends Component<any, FormState> {
             }}>
               {this.state.language === 'english' ? `  Here you can tell me about some really awesome jobs, a problems
               you found on any of my assets, ` :
-                `זה המקום לספר לי על עבודות ממש שוות, בעיות שמצאת בכל אחד מהנכסים שלי,`}
+                `זה המקום לספר לי על עבודות ממש שוות, בעיות שמצאת בכל אחד מהאתרים שלי `}
 
-              <br className="only-desktop" />
+              {this.state.language === 'english' && <br className="only-desktop" />}
+              {this.state.language !== 'english' && <br/>}
               {this.state.language === 'english' ? 'or anything you like :) ' : 'או בעצם, כל דבר :)'}
               <br />
               <span className="explaination">

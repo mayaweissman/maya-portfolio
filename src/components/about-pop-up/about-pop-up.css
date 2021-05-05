@@ -125,6 +125,8 @@
 
 .mobile .inside-about-pop-up {
     height: 90%;
+    max-height: 90%;
+    overflow: auto;
     width: 80vw;
     background-color: var(--light-bg);
     position: absolute;

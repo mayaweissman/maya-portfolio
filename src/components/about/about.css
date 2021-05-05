@@ -132,3 +132,11 @@
   align-items: center;
   white-space: nowrap;
 }
+
+
+.mobile .about-icon {
+  width: 8.5vw;
+  margin-right: 2.3vw;
+  opacity: 1;
+  transition: all 0.7s ease-in-out;
+}

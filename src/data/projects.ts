@@ -52,7 +52,7 @@ export function getProjects() {
         id: 7,
         title: "Shahal",
         imgSrc:"shahal.png",
-        videoSrc: "shahal.webm",
+        videoSrc: "shahal.mp4",
         url:"https://www.shahal.co.il/lp/shahal/pirpur_aliyut/",
         frameworks: ['JavaScript', 'CSS', 'HTML']
       },
@@ -60,7 +60,7 @@ export function getProjects() {
         id: 8,
         title: "Task board",
         imgSrc:"task-board.png",
-        videoSrc: "task-board.webm",
+        videoSrc: "task-board.mp4",
         url:"https://maya-task-board.herokuapp.com",
         frameworks: ['JavaScript', 'CSS', 'HTML']
       },
@@ -68,7 +68,7 @@ export function getProjects() {
         id: 9,
         title: "U-fit",
         imgSrc:"ufit.png",
-        videoSrc: "ufit.webm",
+        videoSrc: "ufit.mp4",
         url:"https://ufit-mw.herokuapp.com/",
         frameworks: ['React', 'CSS', 'TypeScript']
       },
@@ -76,7 +76,7 @@ export function getProjects() {
         id: 10,
         title: "Green Market",
         imgSrc: "green-market.png",
-        videoSrc: "green-market.webm",
+        videoSrc: "green-market.mp4",
         url:"https://github.com/mayaweissman/green-market",
         frameworks: ['Angular', 'CSS', 'TypeScript']
       },
@@ -84,7 +84,7 @@ export function getProjects() {
         id: 11,
         title: "Crypto",
         imgSrc:"crypto.png",
-        videoSrc: "crypto.webm",
+        videoSrc: "crypto.mp4",
         url:"https://crypto-by-mw.web.app/",
         frameworks: ['JavaScript', 'CSS', 'Bootstrap']
       },
@@ -92,7 +92,7 @@ export function getProjects() {
         id: 12,
         title: "Sky Line",
         imgSrc:"skyline.png",
-        videoSrc: "sky-line.webm",
+        videoSrc: "sky-line.mp4",
         url:"https://sky-line-mw.herokuapp.com",
         frameworks: ['React', 'CSS', 'TypeScript']
       },

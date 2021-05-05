@@ -46,12 +46,12 @@ export class Footer extends Component<any, FooterState> {
                         'האתר נבנה באמצעות ReactTS תוך שימוש באייקונים מתוך הספרייה של Material Ui Icons'}
                     <br />
                     {this.state.language === 'english' ?
-                        ` &copy;	All rights reserved to Maya Weissman.` :
+                        ` All rights reserved to Maya Weissman.` :
                         ' כל הזכויות על בניית האתר שמורות למיה ויסמן.'}
 
                     <br />
                     {this.state.language === 'english' ?
-                        `   &copy;	Some of the projects presented on the website were built as part of my work at "McCann",all rights to those properties are reserved to 'McCann Group'
+                        `  Some of the projects presented on the website were built as part of my work at "McCann",all rights to those properties are reserved to 'McCann Group'
                         and its customers.` :
                         ' חלק מהפרוייקטים המוצגים באתר נבנו במסגרת עבודתי בקבוצת "מקאן". כל הזכויות עבור אותם פרוייקטים שמורים לקבוצת "מקאן" ולקוחותיה בלבד בהתאם למדיניות הקבוצה..'}
 

@@ -55,7 +55,7 @@ export class AboutPopUp extends Component<any, AboutPopUpState> {
       content: `Hi! <br/> My name is Maya Weissman. <br/>
      I discovered my love for web development through a completely different profession. <br/>
      In my youth, I was a makeup business owner. <br/>
-     Like any business owner - I needed a website, landing pages and more others. <br/>
+     Like any business owner - I needed a website, landing pages and more. <br/>
      With very little knowledge, I turned to the platforms through them I could build such assets. <br/>
      I spent so many hours working on platforms like WordPress, Wix and others, and I realized I was not in the right field. <br/>
      I fell in love with what I did, and realized I had to turn this hobby into a profession. <br/>
@@ -81,7 +81,7 @@ export class AboutPopUp extends Component<any, AboutPopUpState> {
        I took the course very seriously, and apart from the homework I got from the lecturer, I would spend hours experimenting and mostly doing a lot of self-learning.<br/>
        Thus, it turned out that I graduated with honors - With an average score of 98 in all projects and tests. <br/>
        <br/>
-       It's hard to say that's where my studies ended. The truth is, then they just started. Luckily, I keep learning new things every day :)     `,
+       It's hard to say that's where my studies ended. The truth is, they just started. Luckily, I keep learning new things every day :)     `,
     },
     {
       key: "work",
@@ -92,12 +92,12 @@ export class AboutPopUp extends Component<any, AboutPopUpState> {
       As part of my work, I have taken part in many and varied projects, some for the company's clients and some internal projects. <br/>
       Due to the large number of projects that were intended for different clients, <br/>
       I experienced working in a number of different systems such as:<br/>
-       JavaScript, TypeScript, ReactJS, ReactTS, React Native, Wordpress, PHP, Node.js, Vanilla Js, Excel Functions, FileZilla, VS Code and more others.
+       JavaScript, TypeScript, ReactJS, ReactTS, React Native, Wordpress, PHP, Node.js, Vanilla Js, Excel Functions, FileZilla, VS Code and more.
       <br/>
       I have built Web apps, websites, landing pages and other digital assets for large and reputable clients such as: 
-      Carasso group, Ikea, Partner, Similac, Shahal, Sekindo, Peres academic center and many more others. <br/>
+      Carasso group, Ikea, Partner, Similac, Shahal, Sekindo, Peres academic center and many more. <br/>
       I also took a significant part in the work optimization project within the company. <br/>
-      As part of this, I implemented innovative systems in the company, improved existing processes.<br/>
+      As part of this, I implemented innovative systems in the company and improved existing processes.<br/>
       I also assisted in the company's familiarity with frameworks such as React, Angular, Node.js and more.
       <br/><br/>
       As part of my work, I was privileged to receive additional tools that help me in the world of programming such as ui / ux, data management, information security and more.
