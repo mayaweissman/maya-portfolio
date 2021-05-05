@@ -42,7 +42,7 @@ export class Footer extends Component<any, FooterState> {
             }}>
                 <span>
                     {this.state.language === 'english' ?
-                        ` This website made with ReactTS using some Material Ui Icons.` :
+                        ` This website was made with ReactTS using some Material Ui Icons.` :
                         'האתר נבנה באמצעות ReactTS תוך שימוש באייקונים מתוך הספרייה של Material Ui Icons'}
                     <br />
                     {this.state.language === 'english' ?

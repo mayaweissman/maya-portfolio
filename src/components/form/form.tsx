@@ -21,7 +21,6 @@ interface FormState {
 }
 
 export class Form extends Component<any, FormState> {
-
   private unsubscribeStore: Unsubscribe;
 
   public constructor(props: any) {
@@ -36,7 +35,7 @@ export class Form extends Component<any, FormState> {
         messageError: " ",
       },
       isFormSent: false,
-      language: store.getState().language
+      language: store.getState().language,
     };
 
     this.unsubscribeStore = store.subscribe(() => {
@@ -58,16 +57,21 @@ export class Form extends Component<any, FormState> {
 
   public setName = (e: ChangeEvent<HTMLInputElement>) => {
     const fname = e.target.value;
+    const fixedName = fname.replace(new RegExp("[0-9]", "g"), "");
     const credentials = { ...this.state.credentials };
-    credentials.name = undefined;
+    credentials.name = fixedName;
     let nameError = "";
 
     if (fname.length < 2 || !fname) {
-      nameError =  this.state.language === 'english' ? "How do I know how to call you?" : 'איך אדע כיצד לקרוא לך?';
+      nameError =
+        this.state.language === "english"
+          ? "How do I know how to call you?"
+          : "איך אדע כיצד לקרוא לך?";
     } else if (!fname.split(" ")[1]) {
-      nameError =  this.state.language === 'english' ? "I also have a last name... What about you?" : 'לי יש גם שם משפחה.. מה איתך?';
-    } else {
-      credentials.name = fname;
+      nameError =
+        this.state.language === "english"
+          ? "I also have a last name... What about you?"
+          : "לי יש גם שם משפחה.. מה איתך?";
     }
 
     this.setState({ credentials });
@@ -84,9 +88,15 @@ export class Form extends Component<any, FormState> {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     if (!email) {
-      emailError =  this.state.language === 'english' ? "How do I know how to contact you?" : 'איך אדע כיצד ליצור איתך קשר?';
+      emailError =
+        this.state.language === "english"
+          ? "How do I know how to contact you?"
+          : "איך אדע כיצד ליצור איתך קשר?";
     } else if (!re.test(String(email).toLowerCase())) {
-      emailError =  this.state.language === 'english' ? "Did you just invent an email?" : 'יכול להיות שהמצאת הרגע אימייל?';
+      emailError =
+        this.state.language === "english"
+          ? "Did you just invent an email?"
+          : "יכול להיות שהמצאת הרגע אימייל?";
     } else {
       credentials.email = email;
     }
@@ -105,9 +115,15 @@ export class Form extends Component<any, FormState> {
     credentials.phone = undefined;
 
     if (!phone) {
-      phoneError =  this.state.language === 'english' ? "Looks like you forgot to enter your phone number..." : 'נראה ששכחת להזין את מספר הטלפון שלך';
+      phoneError =
+        this.state.language === "english"
+          ? "Looks like you forgot to enter your phone number..."
+          : "נראה ששכחת להזין את מספר הטלפון שלך";
     } else if (!re.test(String(phone).toLowerCase())) {
-      phoneError =  this.state.language === 'english' ? "Sorry, your phone number does not match my regex." : 'אני מצטערת, המספר שלך לא תואם את ה-regex שלי.';
+      phoneError =
+        this.state.language === "english"
+          ? "Sorry, your phone number does not match my regex."
+          : "אני מצטערת, המספר שלך לא תואם את ה-regex שלי.";
     } else {
       credentials.phone = +phone;
     }
@@ -119,12 +135,15 @@ export class Form extends Component<any, FormState> {
   };
 
   public getProgressForCircle = () => {
-    const credentials = { ...this.state.credentials };
+    const erros = { ...this.state.errors };
     let filled = 0;
-    for (const c of Object.values(credentials)) {
-      if (c) {
+    for (const e of Object.values(erros)) {
+      if (e === "") {
         filled++;
       }
+    }
+    if (this.state.credentials.message) {
+      filled++;
     }
     return filled;
   };
@@ -141,7 +160,8 @@ export class Form extends Component<any, FormState> {
     if (
       !this.state.credentials.phone ||
       !this.state.credentials.email ||
-      !this.state.credentials.name
+      !this.state.credentials.name ||
+      this.state.errors.nameError === " "
     ) {
       isLegal = false;
     }
@@ -177,9 +197,8 @@ export class Form extends Component<any, FormState> {
         if (
           !this.state.credentials.name &&
           this.state.errors.nameError !==
-          "I also have a last name... What about you?" &&
-          this.state.errors.nameError !==
-          'לי יש גם שם משפחה.. מה איתך?'
+            "I also have a last name... What about you?" &&
+          this.state.errors.nameError !== "לי יש גם שם משפחה.. מה איתך?"
         ) {
           focused.name = false;
         }
@@ -188,9 +207,9 @@ export class Form extends Component<any, FormState> {
         if (
           !this.state.credentials.phone &&
           this.state.errors.phoneError !==
-          "Sorry, your phone number does not match my regex." &&
+            "Sorry, your phone number does not match my regex." &&
           this.state.errors.phoneError !==
-          'אני מצטערת, המספר שלך לא תואם את ה-regex שלי.'
+            "אני מצטערת, המספר שלך לא תואם את ה-regex שלי."
         ) {
           focused.phone = false;
         }
@@ -198,8 +217,8 @@ export class Form extends Component<any, FormState> {
       case "email":
         if (
           !this.state.credentials.email &&
-          this.state.errors.emailError !== "Did you just invent an email?" && 
-          this.state.errors.emailError !== 'יכול להיות שהמצאת הרגע אימייל?'
+          this.state.errors.emailError !== "Did you just invent an email?" &&
+          this.state.errors.emailError !== "יכול להיות שהמצאת הרגע אימייל?"
         ) {
           focused.email = false;
         }
@@ -244,30 +263,48 @@ export class Form extends Component<any, FormState> {
         {this.state.isFormSent && (
           <div className="inside-form">
             <img className="thanks-gif" src="./assets/images/giphy.gif" />
-           {this.state.language === 'english' && <h1>I promise to reply your message <br />
-            as soon as possible!</h1>}
-           {this.state.language !== 'english' && <h1>אני מבטיחה לחזור לפנייתך <br />
-            !בהקדם האפשרי</h1>}
+            {this.state.language === "english" && (
+              <h1>
+                I promise to reply your message <br />
+                as soon as possible!
+              </h1>
+            )}
+            {this.state.language !== "english" && (
+              <h1>
+                אני מבטיחה לחזור לפנייתך <br />
+                !בהקדם האפשרי
+              </h1>
+            )}
           </div>
         )}
         {!this.state.isFormSent && (
           <div className="inside-form">
             <h1>
-              {this.state.language === 'english' ? 'Contact me' : 'יצירת קשר'}
+              {this.state.language === "english" ? "Contact me" : "יצירת קשר"}
             </h1>
-            <h3 style={{
-              direction: this.state.language === 'english' ? 'ltr' : 'rtl', textAlign: this.state.language === 'english' ? 'left' : 'right'
-            }}>
-              {this.state.language === 'english' ? `  Here you can tell me about some really awesome jobs, a problems
-              you found on any of my assets, ` :
-                `זה המקום לספר לי על עבודות ממש שוות, בעיות שמצאת בכל אחד מהאתרים שלי `}
+            <h3
+              style={{
+                direction: this.state.language === "english" ? "ltr" : "rtl",
+                textAlign: this.state.language === "english" ? "left" : "right",
+              }}
+            >
+              {this.state.language === "english"
+                ? `  Here you can tell me about some really awesome jobs, a problem
+              you found on any of my assets, `
+                : `זה המקום לספר לי על עבודות ממש שוות, בעיות שמצאת בכל אחד מהאתרים שלי `}
 
-              {this.state.language === 'english' && <br className="only-desktop" />}
-              {this.state.language !== 'english' && <br/>}
-              {this.state.language === 'english' ? 'or anything you like :) ' : 'או בעצם, כל דבר :)'}
+              {this.state.language === "english" && (
+                <br className="only-desktop" />
+              )}
+              {this.state.language !== "english" && <br />}
+              {this.state.language === "english"
+                ? "or anything you like :) "
+                : "או בעצם, כל דבר :)"}
               <br />
               <span className="explaination">
-                {this.state.language === 'english' ? 'Fields marked with-* are required' : 'שדות המסומנים ב-* הינם חובה'}
+                {this.state.language === "english"
+                  ? "Fields marked with-* are required"
+                  : "שדות המסומנים ב-* הינם חובה"}
               </span>
             </h3>
 
@@ -276,9 +313,10 @@ export class Form extends Component<any, FormState> {
                 <div className="fname-area field">
                   <span
                     style={{
-                      direction: this.state.language === 'english' ? 'ltr' : 'rtl',
-                      left: this.state.language === 'english' ? '0' : 'unset',
-                      right: this.state.language === 'english' ? 'unset' : '0'
+                      direction:
+                        this.state.language === "english" ? "ltr" : "rtl",
+                      left: this.state.language === "english" ? "0" : "unset",
+                      right: this.state.language === "english" ? "unset" : "0",
                     }}
                     className={
                       !this.state.focused.name
@@ -286,36 +324,48 @@ export class Form extends Component<any, FormState> {
                         : "form-title active-field"
                     }
                   >
-                    {this.state.language === 'english' ? ' Full name *' : 'שם מלא *'}
+                    {this.state.language === "english"
+                      ? " Full name *"
+                      : "שם מלא *"}
                   </span>
                   <input
                     onFocus={this.upPlaceholders("name")}
                     onInput={this.setName}
+                    value={this.state.credentials.name}
                     onBlur={this.isDownPlaceholder("name")}
                     className="fname-field"
                     name="fname"
                     type="text"
                   />
-                  <span className="error" style={{
-                    direction: this.state.language === 'english' ? 'ltr' : 'rtl',
-                    right: this.state.language === 'english' ? '0' : 'unset',
-                    left: this.state.language === 'english' ? 'unset' : '0'
-                  }}>{this.state.errors.nameError}</span>
+                  <span
+                    className="error"
+                    style={{
+                      direction:
+                        this.state.language === "english" ? "ltr" : "rtl",
+                      right: this.state.language === "english" ? "0" : "unset",
+                      left: this.state.language === "english" ? "unset" : "0",
+                    }}
+                  >
+                    {this.state.errors.nameError}
+                  </span>
                 </div>
                 <div className="phone-area field">
                   <span
-                   style={{
-                    direction: this.state.language === 'english' ? 'ltr' : 'rtl',
-                    left: this.state.language === 'english' ? '0' : 'unset',
-                    right: this.state.language === 'english' ? 'unset' : '0'
-                  }}
+                    style={{
+                      direction:
+                        this.state.language === "english" ? "ltr" : "rtl",
+                      left: this.state.language === "english" ? "0" : "unset",
+                      right: this.state.language === "english" ? "unset" : "0",
+                    }}
                     className={
                       !this.state.focused.phone
                         ? "form-title"
                         : "form-title active-field"
                     }
                   >
-                    {this.state.language === 'english' ? 'Phone number *' : 'מספר טלפון *'}
+                    {this.state.language === "english"
+                      ? "Phone number *"
+                      : "מספר טלפון *"}
                   </span>
                   <input
                     onFocus={this.upPlaceholders("phone")}
@@ -323,30 +373,37 @@ export class Form extends Component<any, FormState> {
                     onBlur={this.isDownPlaceholder("phone")}
                     className="phone-field"
                     name="phone"
-                    type="number"
+                    type={window.screen.width < 600 ? "tel" : "nubmer"}
                   />
-                  <span className="error" style={{
-                    direction: this.state.language === 'english' ? 'ltr' : 'rtl',
-                    right: this.state.language === 'english' ? '0' : 'unset',
-                    left: this.state.language === 'english' ? 'unset' : '0'
-                  }}>{this.state.errors.phoneError}</span>
+                  <span
+                    className="error"
+                    style={{
+                      direction:
+                        this.state.language === "english" ? "ltr" : "rtl",
+                      right: this.state.language === "english" ? "0" : "unset",
+                      left: this.state.language === "english" ? "unset" : "0",
+                    }}
+                  >
+                    {this.state.errors.phoneError}
+                  </span>
                 </div>
               </div>
               <div className="second-section">
                 <div className="email-area field">
                   <span
-                   style={{
-                    direction: this.state.language === 'english' ? 'ltr' : 'rtl',
-                    left: this.state.language === 'english' ? '0' : 'unset',
-                    right: this.state.language === 'english' ? 'unset' : '0'
-                  }}
+                    style={{
+                      direction:
+                        this.state.language === "english" ? "ltr" : "rtl",
+                      left: this.state.language === "english" ? "0" : "unset",
+                      right: this.state.language === "english" ? "unset" : "0",
+                    }}
                     className={
                       !this.state.focused.email
                         ? "form-title"
                         : "form-title active-field"
                     }
                   >
-                    {this.state.language === 'english' ? 'Email *' : 'אימייל *'}
+                    {this.state.language === "english" ? "Email *" : "אימייל *"}
                   </span>
                   <input
                     onFocus={this.upPlaceholders("email")}
@@ -356,26 +413,33 @@ export class Form extends Component<any, FormState> {
                     name="email"
                     type="text"
                   />
-                  <span className="error" style={{
-                    direction: this.state.language === 'english' ? 'ltr' : 'rtl',
-                    right: this.state.language === 'english' ? '0' : 'unset',
-                    left: this.state.language === 'english' ? 'unset' : '0'
-                  }}>{this.state.errors.emailError}</span>
+                  <span
+                    className="error"
+                    style={{
+                      direction:
+                        this.state.language === "english" ? "ltr" : "rtl",
+                      right: this.state.language === "english" ? "0" : "unset",
+                      left: this.state.language === "english" ? "unset" : "0",
+                    }}
+                  >
+                    {this.state.errors.emailError}
+                  </span>
                 </div>
                 <div className="message-area field">
                   <span
-                   style={{
-                    direction: this.state.language === 'english' ? 'ltr' : 'rtl',
-                    left: this.state.language === 'english' ? '0' : 'unset',
-                    right: this.state.language === 'english' ? 'unset' : '0'
-                  }}
+                    style={{
+                      direction:
+                        this.state.language === "english" ? "ltr" : "rtl",
+                      left: this.state.language === "english" ? "0" : "unset",
+                      right: this.state.language === "english" ? "unset" : "0",
+                    }}
                     className={
                       !this.state.focused.message
                         ? "form-title"
                         : "form-title active-field"
                     }
                   >
-                    {this.state.language === 'english' ? 'Message' : 'הודעה'}
+                    {this.state.language === "english" ? "Message" : "הודעה"}
                   </span>
                   <textarea
                     onInput={this.setMessage}
@@ -408,10 +472,11 @@ export class Form extends Component<any, FormState> {
                 <span
                   className={this.isFormIsLegal() ? "lock unlocked" : "lock"}
                 ></span>
-                {this.isFormIsLegal() && <span>
-                  {this.state.language === 'english' ? 'Send' : 'שלח'}
-
-                </span>}
+                {this.isFormIsLegal() && (
+                  <span>
+                    {this.state.language === "english" ? "Send" : "שלח"}
+                  </span>
+                )}
               </div>
               <div className="first-section">
                 <div
@@ -448,8 +513,7 @@ export class Form extends Component<any, FormState> {
               </div>
             </div>
           </div>
-        )
-        }
+        )}
       </div>
     );
   }
