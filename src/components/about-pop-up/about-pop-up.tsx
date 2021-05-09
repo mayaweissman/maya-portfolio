@@ -47,6 +47,11 @@ export class AboutPopUp extends Component<any, AboutPopUpState> {
     }
   }
 
+    public componentWillUnmount(): void {
+    this.unsubscribeStore();
+  }
+
+
   public contents = [
     {
       key: "profile",
@@ -59,6 +64,7 @@ export class AboutPopUp extends Component<any, AboutPopUpState> {
      With very little knowledge, I turned to the platforms through them I could build such assets. <br/>
      I spent so many hours working on platforms like WordPress, Wix and others, and I realized I was not in the right field. <br/>
      I fell in love with what I did, and realized I had to turn this hobby into a profession. <br/>
+     <br/>
      <br/>
      Today, I am happy to say that I am completely in the right field.<br/>
      I am waking up every morning with a passion for what I do. <br/>
@@ -74,10 +80,10 @@ export class AboutPopUp extends Component<any, AboutPopUpState> {
       content: `Since entering the industry, I've heard quite a bit of the question - <br/>
        "Why didn't you just do a 3-month course on Udemy?" <br/>
        The truth is, the one-year course I took at John Bryce College is one of the best experiences I have had. <br/>
-       As part of my studies, I got all the initial toolbox I needed for the first step in the industry. <br/>
+       As part of my studies, I got all the initial toolbox I needed for the first step in the industry. <br/><br/>
        If you already read the "about me" paragraph, you know that I came to John Bryce with zero experience in writing code.<br/>
        At the beginning of the course, I was one of the annoying students, asking a thousand questions - and yes, is far behind everyone in the material.<br/>
-       Call me competitive - but it did not suit me at all not to excel.<br/>
+       Call me competitive - but it did not suit me at all not to excel.<br/><br/>
        I took the course very seriously, and apart from the homework I got from the lecturer, I would spend hours experimenting and mostly doing a lot of self-learning.<br/>
        Thus, it turned out that I graduated with honors - With an average score of 98 in all projects and tests. <br/>
        <br/>
@@ -93,7 +99,7 @@ export class AboutPopUp extends Component<any, AboutPopUpState> {
       Due to the large number of projects that were intended for different clients, <br/>
       I experienced working in a number of different systems such as:<br/>
        JavaScript, TypeScript, ReactJS, ReactTS, React Native, Wordpress, PHP, Node.js, Vanilla Js, Excel Functions, FileZilla, VS Code and more.
-      <br/>
+      <br/><br/>
       I have built Web apps, websites, landing pages and other digital assets for large and reputable clients such as: 
       Carasso group, Ikea, Partner, Similac, Shahal, Sekindo, Peres academic center and many more. <br/>
       I also took a significant part in the work optimization project within the company. <br/>
@@ -168,9 +174,6 @@ export class AboutPopUp extends Component<any, AboutPopUpState> {
     e.stopPropagation();
   };
 
-  public componentWillUnmount(): void {
-    this.unsubscribeStore();
-  }
 
   public getContent = () => {
     return this.state.content.find((c) => c.key === this.state.contentKey);

@@ -72,7 +72,7 @@
   position: fixed;
   width: 100%;
   bottom: 0;
-  z-index: 1;
+  z-index: 4;
   top: unset;
   height: 15vw;
   background-color: transparent;
@@ -101,11 +101,11 @@ footer {
 .mobile footer {
   position: absolute;
   width: 100%;
-  height: 90vw;
-  top: 1000vw;
+  height: 95vw;
+  top: 1023vw;
   margin-top: -16vw;
   text-align: left;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }

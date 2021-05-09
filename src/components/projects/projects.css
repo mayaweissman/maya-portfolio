@@ -23,9 +23,6 @@
   width: 12vw;
 }
 
-.slide:hover{
-  cursor: pointer;
-}
 
 .react-3d-carousel .slider-container .slider-content .slider-single .slider-single-content {
   box-shadow:unset !important;
@@ -76,6 +73,7 @@ transition: background-position 300ms, color 300ms ease, border-color 300ms ease
 
 
 .title-for-profect-section:hover{
+  cursor: pointer;
 color: var(--bg-dark);
 border-color: var(--off-white);
 background-image: 

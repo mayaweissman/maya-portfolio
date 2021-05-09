@@ -235,23 +235,28 @@ export class Form extends Component<any, FormState> {
     this.setState({ focused });
   };
 
+  public encodeForm = (data: any) => {
+    return Object.keys(data)
+      .map(
+        (key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
+      )
+      .join("&");
+  };
+
   public sendForm = async () => {
     try {
-      this.setState({ isFormSent: true });
-      const headers = {
-        processData: false,
-        contentType: false,
-        cache: false,
-        enctype: "multipart/form-data",
-        "Access-Control-Allow-Origin": "*",
-      };
-      const response = await axios.post(
-        "https://hooks.zapier.com/hooks/catch/3149413/by3wogy/",
-        this.state.credentials,
-        {
-          headers: headers,
-        }
-      );
+      axios
+        .post(
+          "https://hooks.zapier.com/hooks/catch/3149413/by3wogy/",
+          this.encodeForm(this.state.credentials),
+          { headers: { Accept: "application/json" } }
+        )
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     } catch (err) {
       console.log(err.message);
     }

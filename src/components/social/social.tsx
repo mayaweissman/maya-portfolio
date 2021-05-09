@@ -60,7 +60,7 @@ export class Social extends Component<any, SocialState> {
 
     setTimeout(() => {
       this.setState({ isAfterAnimation: true });
-    }, 16000);
+    }, 7000);
 
     if (window.screen.width < 600) {
       this.setState({ isOnMobile: true });
