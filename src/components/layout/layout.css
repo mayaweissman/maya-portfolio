@@ -71,7 +71,7 @@
 .mobile .layout > header {
   position: fixed;
   width: 100%;
-  bottom: 0;
+  bottom: 4vw;
   z-index: 4;
   top: unset;
   height: 15vw;

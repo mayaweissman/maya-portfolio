@@ -17,9 +17,7 @@ interface SocialState {
 }
 
 export class Social extends Component<any, SocialState> {
-
   private unsubscribeStore: Unsubscribe;
-
 
   public constructor(props: any) {
     super(props);
@@ -40,7 +38,7 @@ export class Social extends Component<any, SocialState> {
       isAfterAnimation: false,
       isCenterAvailable: false,
       isOnMobile: false,
-      language: store.getState().language
+      language: store.getState().language,
     };
 
     this.unsubscribeStore = store.subscribe(() => {
@@ -49,10 +47,7 @@ export class Social extends Component<any, SocialState> {
     });
   }
 
-
-
   public componentDidMount() {
-
     this.unsubscribeStore = store.subscribe(() => {
       const language = store.getState().language;
       this.setState({ language });
@@ -70,8 +65,6 @@ export class Social extends Component<any, SocialState> {
   public componentWillUnmount(): void {
     this.unsubscribeStore();
   }
-
-
 
   public dragSocial = (social: string) => (e: any) => {
     //Enable function only if animation end
@@ -129,7 +122,7 @@ export class Social extends Component<any, SocialState> {
                 positions[index].left = -4;
                 positions[index].top = -4;
                 this.setState({ positions });
-                document.removeEventListener("mousemove", () => { }, true);
+                document.removeEventListener("mousemove", () => {}, true);
                 this.setState({ isOnDrag: false });
                 return;
               }
@@ -163,8 +156,13 @@ export class Social extends Component<any, SocialState> {
               .querySelector(`.handle-social`)
               ?.getBoundingClientRect().y;
             if (centerX && centerY) {
-              if (((clientX > centerX && clientX < centerX + 100) || (clientX < centerX && clientX > centerX - 50)) &&
-                (clientY > centerY && clientY < centerY + 100) || (clientY < centerY && clientY > centerY - 50)) {
+              if (
+                (((clientX > centerX && clientX < centerX + 100) ||
+                  (clientX < centerX && clientX > centerX - 50)) &&
+                  clientY > centerY &&
+                  clientY < centerY + 100) ||
+                (clientY < centerY && clientY > centerY - 50)
+              ) {
                 this.setState({ isCenterAvailable: true });
                 setTimeout(() => {
                   this.setState({ isCenterAvailable: false });
@@ -180,7 +178,6 @@ export class Social extends Component<any, SocialState> {
               positions[index].left = x;
               positions[index].top = y;
               this.setState({ positions });
-
             }
           }
         });
@@ -207,19 +204,18 @@ export class Social extends Component<any, SocialState> {
         }
         this.setState({ positions: updatedPositions });
         setTimeout(() => {
-            window.location.href = this.state.elementNameToCenter.url as string;
+          window.location.href = this.state.elementNameToCenter.url as string;
         }, 1000);
       }
     } else {
-
       positions[index].left = -4;
       positions[index].top = -4;
       this.setState({ positions });
-      document.removeEventListener("touchmove", () => { }, true);
+      document.removeEventListener("touchmove", () => {}, true);
       this.setState({ isOnDrag: false });
       return;
     }
-  }
+  };
 
   public openSocial = () => {
     if (this.state.isOnDrag) {
@@ -230,8 +226,8 @@ export class Social extends Component<any, SocialState> {
       setTimeout(() => {
         this.setState({ isCenterAvailable: false });
       }, 2000);
-    };
-  }
+    }
+  };
 
   public openByURl = () => {
     if (!this.state.isOnDrag && this.state.elementNameToCenter.url) {
@@ -248,7 +244,9 @@ export class Social extends Component<any, SocialState> {
         style={{ cursor: this.state.isOnDrag ? "grabbing" : "" }}
       >
         <h1>
-          {this.state.language === 'english' ? 'Find me on social media' : 'מצא אותי ברשתות החברתיות'}
+          {this.state.language === "english"
+            ? "Find me on social media"
+            : "מצא אותי ברשתות החברתיות"}
         </h1>
 
         <div className="circle">
@@ -257,16 +255,19 @@ export class Social extends Component<any, SocialState> {
               {s.name !== this.state.elementNameToCenter.name && (
                 <>
                   <div
+                    onClick={() => window.open(s.url, "_blank")}
                     onDragStart={this.dragSocial(s.name as string)}
                     onTouchStart={this.dragSocial(s.name as string)}
                     onTouchEnd={this.touchEnd(s.name as string)}
                     className="social-circle"
                     style={{
-                      left: `${this.state.positions.find((p) => p.name === s.name)
-                        ?.left
-                        }px`,
-                      top: `${this.state.positions.find((p) => p.name === s.name)?.top
-                        }px`,
+                      left: `${
+                        this.state.positions.find((p) => p.name === s.name)
+                          ?.left
+                      }px`,
+                      top: `${
+                        this.state.positions.find((p) => p.name === s.name)?.top
+                      }px`,
                     }}
                   >
                     <img src={`./assets/images/${s.imgSrc}`} />
