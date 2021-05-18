@@ -3,6 +3,7 @@ changeDisplayForAboutPopUp,
 changeDisplayForProjectPopUp,
 getContentForAboutPopUp,
 getProjectForPopUp,
-changeLanguage
+changeLanguage,
+showRecursion
     
 }

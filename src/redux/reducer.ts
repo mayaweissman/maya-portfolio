@@ -39,11 +39,13 @@ export function reducer(oldAppState: AppState, action: Action): AppState {
       break;
 
     case ActionType.getProjectForPopUp:
-      console.log(action.payLoad);
       newAppState.projectForPopUP = action.payLoad;
       break;
-    
 
+    case ActionType.showRecursion:
+      newAppState.displayRecursion = action.payLoad;
+      break;
+      
     default:
       break;
   }

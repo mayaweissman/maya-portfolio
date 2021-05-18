@@ -245,6 +245,7 @@ export class Form extends Component<any, FormState> {
 
   public sendForm = async () => {
     try {
+      this.setState({ isFormSent: true });
       axios
         .post(
           "https://hooks.zapier.com/hooks/catch/3149413/by3wogy/",

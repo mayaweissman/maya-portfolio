@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Unsubscribe } from "redux";
+import { ActionType } from "../../redux/actionType";
 import { store } from "../../redux/store";
 import { AboutPopUp } from "../about-pop-up/about-pop-up";
 import { About } from "../about/about";
@@ -10,6 +11,7 @@ import { Menu } from "../menu/menu";
 import { MobileMenu } from "../mobile-menu/mobile-menu";
 import { ProjectPopUp } from "../project-pop-up/project-pop-up";
 import { Projects } from "../projects/projects";
+import { Recursion } from "../recursion/recursion";
 import { Social } from "../social/social";
 import { Technologies } from "../technologies/technologies";
 import { Welcome } from "../welcome/welcome";
@@ -18,6 +20,7 @@ import "./layout.css";
 interface LayoutState {
   display: boolean;
   diplayForProjectPopUp: boolean;
+  displayRecursion: boolean;
   scroll: number;
   isOnMobile: boolean;
   language: string;
@@ -34,6 +37,7 @@ export class Layout extends Component<any, LayoutState> {
       scroll: 0,
       isOnMobile: false,
       language: store.getState().language,
+      displayRecursion: store.getState().displayRecursion,
     };
 
     this.unsubscribeStore = store.subscribe(() => {
@@ -43,6 +47,8 @@ export class Layout extends Component<any, LayoutState> {
       this.setState({ diplayForProjectPopUp });
       const language = store.getState().language;
       this.setState({ language });
+      const displayRecursion = store.getState().displayRecursion;
+      this.setState({ displayRecursion });
     });
   }
 
@@ -54,6 +60,8 @@ export class Layout extends Component<any, LayoutState> {
       this.setState({ diplayForProjectPopUp });
       const language = store.getState().language;
       this.setState({ language });
+      const displayRecursion = store.getState().displayRecursion;
+      this.setState({ displayRecursion });
     });
 
     if (window.screen.width < 600) {
@@ -73,6 +81,10 @@ export class Layout extends Component<any, LayoutState> {
       const scroll = +this.getVerticalScrollPercentage(document.body);
       this.setState({ scroll });
     });
+
+    if (sessionStorage.getItem("recursion") === "true") {
+      store.dispatch({ type: ActionType.showRecursion, payLoad: true });
+    }
   }
 
   public getVerticalScrollPercentage(elm: any) {
@@ -125,6 +137,7 @@ export class Layout extends Component<any, LayoutState> {
         )}
         {this.state.display && <AboutPopUp />}
         {this.state.diplayForProjectPopUp && <ProjectPopUp />}
+        {this.state.displayRecursion && <Recursion />}
 
         <footer>
           <Footer />
