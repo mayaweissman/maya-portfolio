@@ -11,7 +11,6 @@ interface AboutPopUpState {
   language: string;
 }
 
-
 export class AboutPopUp extends Component<any, AboutPopUpState> {
   private unsubscribeStore: Unsubscribe;
 
@@ -20,7 +19,7 @@ export class AboutPopUp extends Component<any, AboutPopUpState> {
     this.state = {
       contentKey: store.getState().contentForAboutPopUp,
       content: [],
-      language: store.getState().language
+      language: store.getState().language,
     };
 
     this.unsubscribeStore = store.subscribe(() => {
@@ -39,18 +38,16 @@ export class AboutPopUp extends Component<any, AboutPopUpState> {
       this.setState({ language });
     });
 
-    if (this.state.language === 'english') {
-      this.setState({ content: this.contents })
-    }
-    else {
-      this.setState({ content: this.hebContents })
+    if (this.state.language === "english") {
+      this.setState({ content: this.contents });
+    } else {
+      this.setState({ content: this.hebContents });
     }
   }
 
-    public componentWillUnmount(): void {
+  public componentWillUnmount(): void {
     this.unsubscribeStore();
   }
-
 
   public contents = [
     {
@@ -99,15 +96,12 @@ export class AboutPopUp extends Component<any, AboutPopUpState> {
       Due to the large number of projects that were intended for different clients, <br/>
       I experienced working in a number of different systems such as:<br/>
        JavaScript, TypeScript, ReactJS, ReactTS, React Native, Wordpress, PHP, Node.js, Vanilla Js, Excel Functions, FileZilla, VS Code and more.
-      <br/><br/>
-      I have built Web apps, websites, landing pages and other digital assets for large and reputable clients such as: 
-      Carasso group, Ikea, Partner, Similac, Shahal, Sekindo, Peres academic center and many more. <br/>
-      I also took a significant part in the work optimization project within the company. <br/>
-      As part of this, I implemented innovative systems in the company and improved existing processes.<br/>
-      I also assisted in the company's familiarity with frameworks such as React, Angular, Node.js and more.
-      <br/><br/>
+      <br/>
       As part of my work, I was privileged to receive additional tools that help me in the world of programming such as ui / ux, data management, information security and more.
-
+      <br/><br/><br/>
+      In 2021, I started working at the company "Stor.ai" which provides a technological solution for groceries around the world.
+      As part of my work, I took part in the development of systems designed to optimize the collection processes of the company's customers, as part of a team of programmers, Such as picking application designed to optimize the process of picking orders, a "Backoffice" system designed for store managers to delay, perform actions and produce reports for the picking processes in branches,
+      Microservice servers, integration, and more.
       `,
     },
   ];
@@ -159,16 +153,10 @@ export class AboutPopUp extends Component<any, AboutPopUpState> {
      התנסיתי בפיתוח במגוון רחב של שפות וטכנולוגיות כמו:<br/>
        JavaScript, TypeScript, ReactJS, ReactTS, React Native, Wordpress, PHP, Node.js, Vanilla Js, Excel Functions, FileZilla, VS Code ועוד.
       <br/>
-     במסגרת עבודתי בניתי עמודי נחיתה, אתרים ונכסים דיגיטליים אחרים ללקוחות גדולים ונחשבים כמו:
-      קבוצת קראסו, איקאה, פרטנר, סימילאק, שחל, סקינדו, המרכז האקדמי פרס ועוד רבים אחרים.<br/>
-      כמו כן, לקחתי חלק פעיל ומרכזי בתהליך האופטימיזציה הפנימי של החברה במחלקת הפיתוח.<br/>
-    במסגרת כך, הטמעתי במחלקה מערכות חדשניות אשר ייעלו את עבודת הצוות וכמו כן סייעתי בייעול תהליכים קיימים.<br/>
-     כמו כן, סייעתי בלימוד המתכתנים בצוות מערכות חדשות כמו React, Angular, Node.JS ועוד.
-      <br/><br/>
     כמו כן, במסגרת עבודתי זכיתי לקבל כלים נוספים אשר מסייעים לי בעבודתי כמו: UI/UX, אבטחת מידע, ניהול דטאות ועוד.
     <br/><br/><br/>
     בשנת 2021 התחלתי לעבוד בחברת "Stor.ai" המספקת מענה טכנולוגי לסופרים וצרכניות ברחבי העולם.
-    במסגרת עבודתי שם, לקחתי חלק בפיתוח מערכות הנועדו לייעל את תהליכי הליקוט של לקוחות החברה, כחלק מצוות מתכנתים.
+    במסגרת עבודתי, לקחתי חלק בפיתוח מערכות הנועדו לייעל את תהליכי הליקוט של לקוחות החברה, כחלק מצוות מתכנתים.
     בין היתר, פיתחנו אפליקציית ליקוט הנועדה לייעל את תהליך ליקוט ההזמנות, מערכת "Backoffice" הנועדה למנהלי החנות לצורך מעכב, ביצוע פעולות והפקת דוחות עבור תהליכי הליקוט בסניפים,
     שרתי Microservice, אינטגרציה, ועוד. 
 
@@ -179,7 +167,6 @@ export class AboutPopUp extends Component<any, AboutPopUpState> {
   public stopPropagation = (e: any) => {
     e.stopPropagation();
   };
-
 
   public getContent = () => {
     return this.state.content.find((c) => c.key === this.state.contentKey);
@@ -202,10 +189,20 @@ export class AboutPopUp extends Component<any, AboutPopUpState> {
             }
           />
           <h1>{this.getContent()?.title}</h1>
-          <img className="about-image" src={"./assets/images/" + this.getContent()?.imgSrc} />
-          <div className="content-area" style={{ textAlign: this.state.language === 'english' ? 'left' : 'right',
-          direction: this.state.language === 'english' ? 'ltr' : 'rtl' }}
-            dangerouslySetInnerHTML={{ __html: this.getContent()?.content as string }}></div>
+          <img
+            className="about-image"
+            src={"./assets/images/" + this.getContent()?.imgSrc}
+          />
+          <div
+            className="content-area"
+            style={{
+              textAlign: this.state.language === "english" ? "left" : "right",
+              direction: this.state.language === "english" ? "ltr" : "rtl",
+            }}
+            dangerouslySetInnerHTML={{
+              __html: this.getContent()?.content as string,
+            }}
+          ></div>
         </div>
       </div>
     );
