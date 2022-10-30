@@ -41,3 +41,22 @@ html,
   --logo: rgb(64, 171, 242);
   --light-green: rgb(147, 206, 168);
 }
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--semi-dark-bg);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--bg-dark);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--pink);
+}
