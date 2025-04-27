@@ -74,34 +74,45 @@ export class AboutPopUp extends Component<any, AboutPopUpState> {
       key: "study",
       title: "Education",
       imgSrc: "education-icon.svg",
-      content: `Since entering the industry, I've heard quite a bit of the question - <br/>
-       "Why didn't you just do a 3-month course on Udemy?" <br/>
-       The truth is, the one-year course I took at John Bryce College is one of the best experiences I have had. <br/>
-       As part of my studies, I got all the initial toolbox I needed for the first step in the industry. <br/><br/>
-       If you already read the "about me" paragraph, you know that I came to John Bryce with zero experience in writing code.<br/>
-       At the beginning of the course, I was one of the annoying students, asking a thousand questions - and yes, is far behind everyone in the material.<br/>
-       Call me competitive - but it did not suit me at all not to excel.<br/><br/>
-       I took the course very seriously, and apart from the homework I got from the lecturer, I would spend hours experimenting and mostly doing a lot of self-learning.<br/>
-       Thus, it turned out that I graduated with honors - With an average score of 98 in all projects and tests. <br/>
-       <br/>
-       It's hard to say that's where my studies ended. The truth is, they just started. Luckily, I keep learning new things every day :)     `,
+      content: `Since entering the industry, I've often been asked:
+"Why didn’t you just take a 3-month course on Udemy?"
+
+The truth is, the one-year program I completed at John Bryce College was one of the best experiences of my life.
+It gave me a strong foundation — the essential toolbox I needed to take my first steps into the tech world.
+
+If you've read my "About Me," you already know that I came to John Bryce with absolutely no background in coding.
+At the start of the course, I was one of those students who asked a thousand questions — and honestly, I lagged behind the rest of the class.
+Call it competitive spirit, but falling behind just wasn’t an option for me.
+
+I took the course very seriously. Beyond the assigned homework, I spent countless hours practicing, experimenting, and diving deep into self-learning.
+In the end, my hard work paid off: I graduated with honors, achieving a 98 average across all projects and exams.
+
+   `,
     },
     {
       key: "work",
       title: "Career",
       imgSrc: "career-icon.svg",
       content: `
-      In early 2020, I started working at "McCann Group" as a Full stack developer. <br/>
-      As part of my work, I have taken part in many and varied projects, some for the company's clients and some internal projects. <br/>
-      Due to the large number of projects that were intended for different clients, <br/>
-      I experienced working in a number of different systems such as:<br/>
-       JavaScript, TypeScript, ReactJS, ReactTS, React Native, Wordpress, PHP, Node.js, Vanilla Js, Excel Functions, FileZilla, VS Code and more.
-      <br/>
-      As part of my work, I was privileged to receive additional tools that help me in the world of programming such as ui / ux, data management, information security and more.
-      <br/><br/><br/>
-      In 2021, I started working at the company "Stor.ai" which provides a technological solution for groceries around the world.
-      As part of my work, I took part in the development of systems designed to optimize the collection processes of the company's customers, as part of a team of programmers, Such as picking application designed to optimize the process of picking orders, a "Backoffice" system designed for store managers to delay, perform actions and produce reports for the picking processes in branches,
-      Microservice servers, integration, and more.
+In early 2020, I began working at McCann Group as a Full Stack Developer. During my time there, I contributed to a variety of projects, both for external clients and internal initiatives. The diverse range of projects allowed me to gain experience with different technologies and systems, including:
+
+Frontend: JavaScript, TypeScript, ReactJS, ReactTS, React Native, Vanilla JS
+
+Backend: Node.js, PHP
+
+Other Tools: WordPress, Excel Functions, FileZilla, VS Code, and more.
+
+Through these projects, I was able to expand my skill set, gaining exposure to UI/UX design, data management, and information security—essential tools that helped me grow as a developer.
+
+In 2021, I transitioned to Stor.ai, a company specializing in technological solutions for the grocery industry worldwide. There, I played a key role in developing systems to optimize collection processes for the company’s customers. Working as part of a collaborative programming team, I contributed to several critical systems, including:
+
+Picking Application: A system designed to streamline the order-picking process.
+
+Backoffice System: A tool for store managers to monitor, manage, and generate reports related to picking processes across various branches.
+
+Microservices & Integration: Developing microservice-based servers and integrations to support various operational needs.
+
+This experience at Stor.ai further honed my technical and collaborative skills, deepening my expertise in system optimization and large-scale software development.
       `,
     },
   ];
